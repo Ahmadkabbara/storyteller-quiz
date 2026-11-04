@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>The Storyteller Quiz | Ottawa Uyghur Center</title>
+  <title>The Storyteller Adventure Race</title>
   
-  <!-- PWA & Mobile Web App Meta -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="theme-color" content="#1E1B4B">
@@ -19,7 +18,7 @@
   <style>
     :root {
       --bg: #0F172A;
-      --card-bg: rgba(30, 41, 59, 0.92);
+      --card-bg: rgba(30, 41, 59, 0.94);
       --red: #E11D48;
       --blue: #2563EB;
       --yellow: #D97706;
@@ -37,9 +36,8 @@
       user-select: none;
     }
 
-    /* Top Brand Bar */
     header {
-      padding: 12px 20px;
+      padding: 10px 18px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -47,22 +45,14 @@
       backdrop-filter: blur(10px);
       border-bottom: 2px solid rgba(245, 158, 11, 0.35);
     }
-    .header-logo-wrap {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .header-logo-img {
-      height: 44px;
-      width: auto;
-      object-fit: contain;
-    }
+    .header-logo-wrap { display: flex; align-items: center; gap: 10px; }
+    .header-logo-img { height: 42px; width: auto; object-fit: contain; }
     .header-tag {
       font-size: 11px;
       font-weight: 800;
       color: #FDE68A;
       background: rgba(245, 158, 11, 0.2);
-      padding: 5px 12px;
+      padding: 4px 10px;
       border-radius: 12px;
       text-transform: uppercase;
       letter-spacing: 0.6px;
@@ -72,56 +62,33 @@
       flex: 1;
       display: flex;
       flex-direction: column;
-      padding: 18px;
+      padding: 16px;
       max-width: 500px;
       width: 100%;
       margin: 0 auto;
     }
 
     /* ============= VIEW 1: JOIN LOBBY ============= */
-    #view-join {
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-    }
-
-    /* Official Brand Card with User's Logo */
+    #view-join { display: flex; flex-direction: column; gap: 16px; }
     .brand-hero-card {
       background: var(--card-bg);
       border: 2px solid rgba(245, 158, 11, 0.35);
-      border-radius: 24px;
-      padding: 22px 18px;
+      border-radius: 22px;
+      padding: 18px;
       text-align: center;
       box-shadow: 0 10px 30px rgba(0,0,0,0.5);
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
     }
-    .brand-official-logo {
-      max-width: 220px;
-      max-height: 85px;
-      object-fit: contain;
-      filter: drop-shadow(0 4px 10px rgba(0,0,0,0.5));
-    }
-    .hero-avatar-preview {
-      width: 80px;
-      height: 80px;
-      animation: bounce 2s ease-in-out infinite;
-    }
-    .brand-hero-sub {
-      font-size: 13px;
-      color: #94A3B8;
-      font-weight: 600;
-    }
+    .brand-official-logo { max-width: 200px; max-height: 75px; object-fit: contain; }
+    .hero-avatar-preview { width: 75px; height: 75px; animation: bounce 2s ease-in-out infinite; }
+    .brand-hero-sub { font-size: 13px; color: #94A3B8; font-weight: 600; }
 
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
     .form-label {
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.8px;
@@ -133,15 +100,15 @@
     .form-label .step-num {
       background: #F59E0B;
       color: #0F172A;
-      width: 20px;
-      height: 20px;
+      width: 18px;
+      height: 18px;
       border-radius: 50%;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      font-size: 11px;
+      font-size: 10px;
       font-weight: 900;
-      margin-right: 6px;
+      margin-right: 5px;
     }
     .btn-random-name {
       background: rgba(245, 158, 11, 0.2);
@@ -158,50 +125,40 @@
       background: #0F172A;
       border: 2px solid #334155;
       color: white;
-      font-size: 20px;
+      font-size: 19px;
       font-weight: 800;
-      padding: 14px 16px;
-      border-radius: 16px;
+      padding: 12px 16px;
+      border-radius: 14px;
       outline: none;
       text-align: center;
-      letter-spacing: 0.5px;
     }
-    input.input-field:focus {
-      border-color: #F59E0B;
-      box-shadow: 0 0 15px rgba(245, 158, 11, 0.4);
-      background: #1E293B;
-    }
+    input.input-field:focus { border-color: #F59E0B; background: #1E293B; }
 
-    /* Avatar Picker Carousel */
     .avatar-carousel {
       display: flex;
       gap: 10px;
       overflow-x: auto;
-      padding: 8px 4px;
+      padding: 6px 2px;
       scroll-snap-type: x mandatory;
       -webkit-overflow-scrolling: touch;
     }
     .avatar-carousel::-webkit-scrollbar { display: none; }
     .avatar-card {
-      flex: 0 0 78px;
+      flex: 0 0 74px;
       background: #1E293B;
       border: 2px solid #334155;
-      border-radius: 18px;
-      padding: 8px 4px;
+      border-radius: 16px;
+      padding: 6px 4px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 6px;
+      gap: 4px;
       cursor: pointer;
       transition: all 0.2s;
-      scroll-snap-align: center;
     }
-    .avatar-card .avatar-thumb {
-      width: 52px;
-      height: 52px;
-    }
+    .avatar-card .avatar-thumb { width: 48px; height: 48px; }
     .avatar-card .avatar-title {
-      font-size: 10px;
+      font-size: 9px;
       font-weight: 800;
       color: #CBD5E1;
       text-align: center;
@@ -214,178 +171,182 @@
       border-color: #F59E0B;
       background: rgba(245, 158, 11, 0.2);
       transform: scale(1.08);
-      box-shadow: 0 0 18px rgba(245, 158, 11, 0.5);
+      box-shadow: 0 0 16px rgba(245, 158, 11, 0.5);
     }
-
     .btn-join {
       background: linear-gradient(135deg, #10B981, #059669);
       color: white;
       border: none;
-      border-radius: 18px;
+      border-radius: 16px;
       padding: 16px;
-      font-size: 22px;
+      font-size: 20px;
       font-weight: 900;
       cursor: pointer;
       box-shadow: 0 6px 25px rgba(16, 185, 129, 0.45);
-      margin-top: 6px;
-      transition: transform 0.15s;
+      margin-top: 4px;
     }
-    .btn-join:active { transform: scale(0.98); }
 
-    /* ============= VIEW 2: WAITING IN LOBBY ============= */
+    /* ============= VIEW 2: WAITING ============= */
     #view-waiting {
       display: none;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
-      gap: 20px;
+      gap: 18px;
       height: 100%;
     }
-    .waiting-avatar {
-      width: 130px;
-      height: 130px;
-      animation: float 3s ease-in-out infinite;
-    }
-    .waiting-name {
-      font-size: 28px;
-      font-weight: 900;
-      color: #FDE68A;
-      font-family: 'Fredoka', sans-serif;
-    }
+    .waiting-avatar { width: 120px; height: 120px; animation: float 3s ease-in-out infinite; }
+    .waiting-name { font-size: 26px; font-weight: 900; color: #FDE68A; font-family: 'Fredoka', sans-serif; }
     .waiting-banner {
       background: var(--card-bg);
       border: 1.5px solid rgba(245, 158, 11, 0.3);
       border-radius: 20px;
-      padding: 22px 24px;
+      padding: 20px;
       color: #94A3B8;
       font-size: 15px;
       line-height: 1.5;
     }
-    .waiting-banner strong { color: #38BDF8; font-size: 18px; }
 
-    /* ============= VIEW 3: IN GAME (4 BUTTONS) ============= */
-    #view-gameplay {
+    /* ============= VIEW 3: IN-GAME SELF-PACED RACE ============= */
+    #view-race {
       display: none;
       flex-direction: column;
       height: 100%;
-      gap: 16px;
+      gap: 12px;
     }
-    .gameplay-top {
+    .race-top-bar {
+      background: #1E293B;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 10px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .race-stats-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: #1E293B;
-      padding: 10px 18px;
-      border-radius: 14px;
+      font-size: 13px;
       font-weight: 800;
     }
-    .q-badge { color: #94A3B8; font-size: 14px; }
-    .score-badge { color: #38BDF8; font-size: 16px; font-family: 'Fredoka', sans-serif; }
+    .race-progress-track {
+      width: 100%;
+      height: 10px;
+      background: #0F172A;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid #334155;
+    }
+    .race-progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #38BDF8, #10B981, #F59E0B);
+      width: 0%;
+      transition: width 0.4s ease;
+      border-radius: 10px;
+    }
 
-    .q-mobile-box {
+    /* Question Box on Phone */
+    .question-card {
       background: var(--card-bg);
-      border: 1.5px solid rgba(255, 255, 255, 0.1);
-      border-radius: 18px;
-      padding: 16px;
-      text-align: center;
-      font-size: 17px;
-      font-weight: 800;
-      color: white;
-      min-height: 70px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .answer-buttons-grid {
-      flex: 1;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: 1fr 1fr;
-      gap: 14px;
-    }
-    .btn-answer {
-      border: none;
+      border: 1.5px solid rgba(255, 255, 255, 0.15);
       border-radius: 20px;
+      padding: 18px;
+      text-align: center;
+      min-height: 90px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+    }
+    .question-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: #FFFFFF;
+      line-height: 1.35;
+    }
+
+    /* 4 Answer Options */
+    .options-list {
+      flex: 1;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
       gap: 10px;
-      color: white;
-      cursor: pointer;
-      box-shadow: 0 8px 18px rgba(0,0,0,0.3);
-      transition: transform 0.1s, opacity 0.2s;
-    }
-    .btn-answer:active { transform: scale(0.94); }
-    .btn-answer.ans-0 { background: linear-gradient(135deg, #E11D48, #BE123C); }
-    .btn-answer.ans-1 { background: linear-gradient(135deg, #2563EB, #1D4ED8); }
-    .btn-answer.ans-2 { background: linear-gradient(135deg, #D97706, #B45309); }
-    .btn-answer.ans-3 { background: linear-gradient(135deg, #059669, #047857); }
-
-    .btn-answer .shape-icon {
-      font-size: 38px;
-      filter: drop-shadow(0 2px 5px rgba(0,0,0,0.3));
-    }
-    .btn-answer .ans-label {
-      font-size: 14px;
-      font-weight: 800;
-      text-align: center;
-      padding: 0 8px;
-    }
-
-    /* Submitted State */
-    .submitted-overlay {
-      display: none;
-      flex-direction: column;
-      align-items: center;
       justify-content: center;
+    }
+    .btn-option {
+      background: #1E293B;
+      border: 2px solid #334155;
+      border-radius: 16px;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
       gap: 14px;
-      height: 100%;
-      text-align: center;
+      color: white;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      transition: transform 0.1s, background 0.2s, border-color 0.2s;
     }
-    .submitted-icon { font-size: 60px; animation: pulse 1.5s infinite; }
-    .submitted-text { font-size: 22px; font-weight: 900; color: #FDE68A; }
+    .btn-option:active { transform: scale(0.97); }
+    .btn-option.opt-0 .opt-icon { background: #E11D48; }
+    .btn-option.opt-1 .opt-icon { background: #2563EB; }
+    .btn-option.opt-2 .opt-icon { background: #D97706; }
+    .btn-option.opt-3 .opt-icon { background: #059669; }
 
-    /* ============= VIEW 4: ANSWER RESULT ============= */
-    #view-result {
+    .opt-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+    .opt-text { flex: 1; text-align: left; }
+
+    /* Flash states */
+    .btn-option.flash-correct {
+      background: rgba(16, 185, 129, 0.3) !important;
+      border-color: #10B981 !important;
+      transform: scale(1.02);
+    }
+    .btn-option.flash-wrong {
+      background: rgba(239, 68, 68, 0.3) !important;
+      border-color: #EF4444 !important;
+    }
+
+    /* Feedback Banner */
+    .feedback-banner {
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: 900;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .feedback-banner.show { opacity: 1; }
+    .feedback-banner.correct { color: #10B981; }
+    .feedback-banner.wrong { color: #EF4444; }
+
+    /* Finished Trophy Screen */
+    #view-finished {
       display: none;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      height: 100%;
       text-align: center;
       gap: 20px;
+      height: 100%;
     }
-    .result-card {
-      width: 100%;
-      background: var(--card-bg);
-      border-radius: 24px;
-      padding: 30px 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-      border: 2px solid transparent;
-    }
-    .result-card.correct { border-color: #10B981; background: rgba(16, 185, 129, 0.15); }
-    .result-card.wrong { border-color: #EF4444; background: rgba(239, 68, 68, 0.15); }
 
-    .result-emoji { font-size: 64px; }
-    .result-status { font-size: 28px; font-weight: 900; margin: 10px 0; }
-    .result-points { font-size: 32px; font-weight: 900; color: #FDE68A; font-family: 'Fredoka', sans-serif; }
-    .result-streak { color: #F97316; font-weight: 800; font-size: 16px; margin-top: 8px; }
-
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
-    }
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-12px); }
-    }
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.1); }
-    }
+    @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
   </style>
 </head>
 <body>
@@ -394,19 +355,18 @@
     <div class="header-logo-wrap">
       <img src="/assets/logo-storyteller.png" alt="The Storyteller" class="header-logo-img">
     </div>
-    <div class="header-tag">Ottawa Uyghur Center</div>
+    <div class="header-tag">Adventure Race</div>
   </header>
 
   <main>
-    <!-- ================= VIEW 1: JOIN LOBBY ================= -->
+    <!-- ================= VIEW 1: JOIN ================= -->
     <section id="view-join">
       <div class="brand-hero-card">
-        <img src="/assets/logo-storyteller.png" alt="The Storyteller Ahmad Kabbara" class="brand-official-logo">
+        <img src="/assets/logo-storyteller.png" alt="The Storyteller" class="brand-official-logo">
         <div class="hero-avatar-preview" id="previewAvatarBox"></div>
-        <div class="brand-hero-sub">Welcome to Saturday Quiz Night! Pick your Fez avatar & nickname below:</div>
+        <div class="brand-hero-sub">Enter your nickname & choose your Fez avatar to race toward the trophy! 🏆</div>
       </div>
 
-      <!-- STEP 1: Nickname (Prominent for 20-50 kids) -->
       <div class="form-group">
         <div class="form-label">
           <span><span class="step-num">1</span> Your Nickname</span>
@@ -415,7 +375,6 @@
         <input type="text" id="inputName" class="input-field" placeholder="Enter your nickname..." maxlength="20" autofocus>
       </div>
 
-      <!-- STEP 2: Choose Fez Avatar -->
       <div class="form-group">
         <div class="form-label">
           <span><span class="step-num">2</span> Choose Your Fez Avatar 🎩</span>
@@ -423,7 +382,6 @@
         <div class="avatar-carousel" id="avatarCarousel"></div>
       </div>
 
-      <!-- STEP 3: Game PIN -->
       <div class="form-group">
         <div class="form-label">
           <span><span class="step-num">3</span> Game PIN (From Projector Screen)</span>
@@ -431,76 +389,80 @@
         <input type="number" id="inputPin" class="input-field" placeholder="e.g. 482910">
       </div>
 
-      <button id="btnJoinGame" class="btn-join">🚀 Join Quiz!</button>
+      <button id="btnJoinGame" class="btn-join">🏁 Join Quest!</button>
     </section>
 
-    <!-- ================= VIEW 2: WAITING IN LOBBY ================= -->
+    <!-- ================= VIEW 2: WAITING ================= -->
     <section id="view-waiting">
       <div class="waiting-avatar" id="waitingAvatarBox"></div>
-      <div class="waiting-name" id="waitingNameText">Hello Champion!</div>
+      <div class="waiting-name" id="waitingNameText">Hello Adventurer!</div>
       <div class="waiting-banner">
-        🎉 <strong>You're in!</strong><br><br>
-        Look up at the big screen at the Ottawa Uyghur Center. The game will begin as soon as Ahmad starts!
+        🎉 <strong>You are on the Start Line!</strong><br><br>
+        Watch the big screen map at the Ottawa Uyghur Center. The race begins as soon as Ahmad starts the quest!
       </div>
     </section>
 
-    <!-- ================= VIEW 3: GAMEPLAY (4 COLORED BUTTONS) ================= -->
-    <section id="view-gameplay">
-      <div class="gameplay-top">
-        <div class="q-badge">Question <span id="playerQNum">1</span>/<span id="playerTotalQ">30</span></div>
-        <div class="score-badge"><span id="playerScoreText">0</span> pts</div>
+    <!-- ================= VIEW 3: IN-GAME SELF-PACED RACE ================= -->
+    <section id="view-race">
+      <div class="race-top-bar">
+        <div class="race-stats-row">
+          <span style="color: #94A3B8;">Question <span id="qCurrentNum" style="color:white; font-size: 15px;">1</span>/<span id="qTotalNum">30</span></span>
+          <span id="streakBadge" style="color: #F97316;">🌟 Let's go!</span>
+          <span id="scoreBadge" style="color: #38BDF8; font-family: 'Fredoka', sans-serif; font-size: 16px;">0 pts</span>
+        </div>
+        <div class="race-progress-track">
+          <div class="race-progress-bar" id="raceProgressBar"></div>
+        </div>
       </div>
 
-      <div class="q-mobile-box" id="playerQText">
-        Look up at the big screen!
+      <div class="question-card">
+        <div class="question-title" id="questionText">Loading quest question...</div>
       </div>
 
-      <!-- 4 Massive Answer Buttons -->
-      <div class="answer-buttons-grid" id="answerButtonsGrid">
-        <button class="btn-answer ans-0" onclick="submitAnswer(0)">
-          <div class="shape-icon">▲</div>
-          <div class="ans-label" id="btnLabel0">Option A</div>
-        </button>
-        <button class="btn-answer ans-1" onclick="submitAnswer(1)">
-          <div class="shape-icon">◆</div>
-          <div class="ans-label" id="btnLabel1">Option B</div>
-        </button>
-        <button class="btn-answer ans-2" onclick="submitAnswer(2)">
-          <div class="shape-icon">●</div>
-          <div class="ans-label" id="btnLabel2">Option C</div>
-        </button>
-        <button class="btn-answer ans-3" onclick="submitAnswer(3)">
-          <div class="shape-icon">■</div>
-          <div class="ans-label" id="btnLabel3">Option D</div>
-        </button>
-      </div>
+      <div class="feedback-banner" id="feedbackBanner">✨ Awesome! Advancing on the map!</div>
 
-      <!-- Submitted Screen -->
-      <div class="submitted-overlay" id="submittedOverlay">
-        <div class="submitted-icon">⏳</div>
-        <div class="submitted-text">Answer Locked In!</div>
-        <div style="color: #94A3B8; font-size: 15px;">Watch the big screen to see if you got it right!</div>
+      <div class="options-list" id="optionsList">
+        <button class="btn-option opt-0" onclick="answer(0)">
+          <div class="opt-icon">▲</div>
+          <div class="opt-text" id="optText0">Option A</div>
+        </button>
+        <button class="btn-option opt-1" onclick="answer(1)">
+          <div class="opt-icon">◆</div>
+          <div class="opt-text" id="optText1">Option B</div>
+        </button>
+        <button class="btn-option opt-2" onclick="answer(2)">
+          <div class="opt-icon">●</div>
+          <div class="opt-text" id="optText2">Option C</div>
+        </button>
+        <button class="btn-option opt-3" onclick="answer(3)">
+          <div class="opt-icon">■</div>
+          <div class="opt-text" id="optText3">Option D</div>
+        </button>
       </div>
     </section>
 
-    <!-- ================= VIEW 4: ANSWER RESULT ============= -->
-    <section id="view-result">
-      <div class="result-card" id="resultCard">
-        <div class="result-emoji" id="resultEmoji">🎉</div>
-        <div class="result-status" id="resultStatus">CORRECT!</div>
-        <div class="result-points" id="resultPoints">+950 pts</div>
-        <div class="result-streak" id="resultStreak">🔥 Streak x3</div>
+    <!-- ================= VIEW 4: FINISHED ================= -->
+    <section id="view-finished">
+      <div style="font-size: 72px;">🏆</div>
+      <div style="font-size: 32px; font-weight: 900; color: #FDE68A; font-family: 'Fredoka', sans-serif;">
+        YOU REACHED THE TROPHY!
       </div>
-      <div style="color: #94A3B8; font-size: 15px;">Next question coming up...</div>
+      <div class="waiting-banner">
+        🌟 <strong>Incredible Quest!</strong><br><br>
+        Your Fez avatar has reached the finish line! Look up at the big screen to see your final podium standing!
+      </div>
     </section>
   </main>
 
   <script>
     const socket = io();
     let selectedAvatar = 'fez_lion';
-    let myScore = 0;
+    let questionsList = [];
+    let currentIdx = 0;
+    let questionStartTime = 0;
+    let isAnswering = false;
 
-    // Web Audio Sound Effects
+    // Web Audio Sound Generator
     const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     function playBeep(freq = 523.25, type = 'sine', duration = 0.12) {
       if (audioCtx.state === 'suspended') audioCtx.resume();
@@ -516,14 +478,12 @@
       osc.stop(audioCtx.currentTime + duration);
     }
 
-    // 1. Check for URL PIN shortcut (e.g. play.thestoryteller.academy?pin=482910)
+    // 1. URL PIN Shortcut
     const urlParams = new URLSearchParams(window.location.search);
     const pinFromUrl = urlParams.get('pin');
-    if (pinFromUrl) {
-      document.getElementById('inputPin').value = pinFromUrl;
-    }
+    if (pinFromUrl) document.getElementById('inputPin').value = pinFromUrl;
 
-    // 2. Populate Avatar Carousel with 12 Red Fez Avatars
+    // 2. Avatars
     function initAvatars() {
       const carousel = document.getElementById('avatarCarousel');
       carousel.innerHTML = '';
@@ -550,13 +510,12 @@
       document.getElementById('previewAvatarBox').innerHTML = getAvatarSvg(selectedAvatar);
     }
 
-    // 3. Random Name Generator Button
     document.getElementById('btnRandomName').addEventListener('click', () => {
       document.getElementById('inputName').value = getRandomNickname();
       playBeep(523.25, 'triangle', 0.08);
     });
 
-    // 4. Join Game
+    // 3. Join Game
     document.getElementById('btnJoinGame').addEventListener('click', () => {
       const pin = document.getElementById('inputPin').value.trim();
       let name = document.getElementById('inputName').value.trim();
@@ -574,7 +533,6 @@
       socket.emit('player:join', { pin, name, avatar: selectedAvatar }, (res) => {
         if (!res.success) return alert(res.error);
 
-        // Switch to Waiting Screen
         document.getElementById('view-join').style.display = 'none';
         document.getElementById('view-waiting').style.display = 'flex';
 
@@ -585,75 +543,94 @@
       });
     });
 
-    // 5. Question Started
-    socket.on('player:new_question', (qData) => {
+    // 4. Race starts from Host
+    socket.on('player:race_started', ({ totalQuestions, questions }) => {
+      questionsList = questions;
+      currentIdx = 0;
+
       document.getElementById('view-waiting').style.display = 'none';
-      document.getElementById('view-result').style.display = 'none';
-      document.getElementById('view-gameplay').style.display = 'flex';
+      document.getElementById('view-race').style.display = 'flex';
+      document.getElementById('qTotalNum').textContent = totalQuestions;
 
-      document.getElementById('answerButtonsGrid').style.display = 'grid';
-      document.getElementById('submittedOverlay').style.display = 'none';
-
-      document.getElementById('playerQNum').textContent = qData.index + 1;
-      document.getElementById('playerTotalQ').textContent = qData.total;
-      document.getElementById('playerQText').textContent = qData.question;
-
-      // Populate button labels
-      for (let i = 0; i < 4; i++) {
-        document.getElementById(`btnLabel${i}`).textContent = qData.options[i];
-      }
-
-      playBeep(440, 'triangle', 0.15);
+      loadQuestion(0);
     });
 
-    // 6. Submit Answer
-    function submitAnswer(idx) {
-      if (navigator.vibrate) navigator.vibrate(50);
-      playBeep(659.25, 'sine', 0.1);
+    function loadQuestion(idx) {
+      if (idx >= questionsList.length) {
+        showFinishedScreen();
+        return;
+      }
 
-      socket.emit('player:submit_answer', { optionIndex: idx });
+      const q = questionsList[idx];
+      currentIdx = idx;
+      isAnswering = false;
+      questionStartTime = Date.now();
 
-      document.getElementById('answerButtonsGrid').style.display = 'none';
-      document.getElementById('submittedOverlay').style.display = 'flex';
+      document.getElementById('qCurrentNum').textContent = idx + 1;
+      document.getElementById('questionText').textContent = q.question;
+
+      for (let i = 0; i < 4; i++) {
+        const btn = document.querySelectorAll('.btn-option')[i];
+        btn.className = `btn-option opt-${i}`;
+        document.getElementById(`optText${i}`).textContent = q.options[i];
+      }
+
+      const feedback = document.getElementById('feedbackBanner');
+      feedback.className = 'feedback-banner';
     }
 
-    // 7. Answer Result
-    socket.on('player:answer_result', (data) => {
-      document.getElementById('view-gameplay').style.display = 'none';
-      document.getElementById('view-result').style.display = 'flex';
+    function answer(optionIndex) {
+      if (isAnswering) return;
+      isAnswering = true;
 
-      const card = document.getElementById('resultCard');
-      const emoji = document.getElementById('resultEmoji');
-      const status = document.getElementById('resultStatus');
-      const points = document.getElementById('resultPoints');
-      const streak = document.getElementById('resultStreak');
+      const timeSpent = Math.max(0, (Date.now() - questionStartTime) / 1000);
+      if (navigator.vibrate) navigator.vibrate(50);
 
-      myScore = data.totalScore;
-      document.getElementById('playerScoreText').textContent = myScore.toLocaleString();
+      socket.emit('player:answer_question', {
+        questionIndex: currentIdx,
+        optionIndex,
+        timeSpent
+      }, (result) => {
+        const btn = document.querySelectorAll('.btn-option')[optionIndex];
+        const feedback = document.getElementById('feedbackBanner');
 
-      if (data.isCorrect) {
-        card.className = 'result-card correct';
-        emoji.textContent = '🎉';
-        status.textContent = 'AWESOME! CORRECT!';
-        status.style.color = '#10B981';
-        points.textContent = `+${data.pointsEarned.toLocaleString()} pts`;
-        streak.textContent = data.streak > 1 ? `🔥 ${data.streak} Question Streak!` : '🌟 Keep it up!';
-        playBeep(880, 'sine', 0.25);
-      } else {
-        card.className = 'result-card wrong';
-        emoji.textContent = '💪';
-        status.textContent = 'GOOD TRY!';
-        status.style.color = '#EF4444';
-        points.textContent = '+0 pts';
-        streak.textContent = 'Get ready for the next one!';
-        playBeep(220, 'square', 0.2);
-      }
-    });
+        // Update top bar stats
+        document.getElementById('scoreBadge').textContent = `${result.totalScore.toLocaleString()} pts`;
+        document.getElementById('raceProgressBar').style.width = `${result.progress}%`;
+        if (result.streak > 1) {
+          document.getElementById('streakBadge').textContent = `🔥 ${result.streak} Streak!`;
+        } else {
+          document.getElementById('streakBadge').textContent = `🏃 Questing...`;
+        }
 
-    // 8. Finished / Podium
-    socket.on('game:finished', ({ podium }) => {
-      confetti({ particleCount: 100, spread: 70 });
-    });
+        if (result.isCorrect) {
+          btn.classList.add('flash-correct');
+          feedback.textContent = `🎉 Correct! Advancing on the map! (+${result.pointsEarned} pts)`;
+          feedback.className = 'feedback-banner show correct';
+          playBeep(880, 'sine', 0.25);
+        } else {
+          btn.classList.add('flash-wrong');
+          feedback.textContent = `💪 Keep going! Charging to the next one...`;
+          feedback.className = 'feedback-banner show wrong';
+          playBeep(260, 'square', 0.2);
+        }
+
+        // Automatic seamless transition to next question
+        setTimeout(() => {
+          if (result.isFinished || currentIdx + 1 >= questionsList.length) {
+            showFinishedScreen();
+          } else {
+            loadQuestion(currentIdx + 1);
+          }
+        }, 1100);
+      });
+    }
+
+    function showFinishedScreen() {
+      document.getElementById('view-race').style.display = 'none';
+      document.getElementById('view-finished').style.display = 'flex';
+      confetti({ particleCount: 120, spread: 80 });
+    }
 
     initAvatars();
   </script>
