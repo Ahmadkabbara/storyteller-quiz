@@ -27,6 +27,14 @@ let questionBank = loadQuestionBank();
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 
+app.get('/reviews', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'reviews.html'));
+});
+
+app.get('/testimonials', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'reviews.html'));
+});
+
 app.get('/api/stories', (req, res) => {
   questionBank = loadQuestionBank();
   const list = Object.keys(questionBank).map(key => ({
