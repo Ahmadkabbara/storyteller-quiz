@@ -1,0 +1,331 @@
+{
+  "the_100_year_sleep": {
+    "title": "The 100-Year Sleep & The Miracle of the Donkey",
+    "surah": "Surah Al-Baqarah (2:259)",
+    "description": "Two incredible miracles proving Allah's power over time and resurrection.",
+    "questions": [
+      {
+        "id": 1,
+        "question": "Which Surah in the Qur'an contains the story of the man who slept for 100 years?",
+        "options": ["Surah Al-Fatiha", "Surah Al-Baqarah", "Surah Al-Kahf", "Surah Ya-Sin"],
+        "answer": 1,
+        "time": 20
+      },
+      {
+        "id": 2,
+        "question": "In which verse of Surah Al-Baqarah is this story found?",
+        "options": ["Verse 255", "Verse 259", "Verse 260", "Verse 286"],
+        "answer": 1,
+        "time": 20
+      },
+      {
+        "id": 3,
+        "question": "What faithful animal was traveling with the righteous man?",
+        "options": ["A camel", "A horse", "A donkey", "An elephant"],
+        "answer": 2,
+        "time": 20
+      },
+      {
+        "id": 4,
+        "question": "What fresh food did the traveler carry in his basket?",
+        "options": ["Apples and bread", "Ripe figs and grapes", "Rice and lamb", "Fish and vegetables"],
+        "answer": 1,
+        "time": 20
+      },
+      {
+        "id": 5,
+        "question": "What drink did the traveler bring along on his journey?",
+        "options": ["Fresh milk or juice", "Coffee", "Salty water", "Hot tea"],
+        "answer": 0,
+        "time": 20
+      },
+      {
+        "id": 6,
+        "question": "When the traveler reached the city in the valley, what did it look like?",
+        "options": ["A busy market full of merchants", "A grand palace with guards", "A completely destroyed ghost town in ruins", "A lush green garden"],
+        "answer": 2,
+        "time": 20
+      },
+      {
+        "id": 7,
+        "question": "How does the Qur'an describe the collapsed buildings of the city?",
+        "options": ["Covered in water", "Fallen down over their roofs", "Burned into ashes", "Turned into gold"],
+        "answer": 1,
+        "time": 20
+      },
+      {
+        "id": 8,
+        "question": "What question did the traveler ask when he saw the ruins?",
+        "options": ["Where can I buy food?", "Who built this palace?", "How will Allah bring this city back to life after its death?", "Can I build a house here?"],
+        "answer": 2,
+        "time": 25
+      },
+      {
+        "id": 9,
+        "question": "Did the traveler ask his question because he doubted Allah?",
+        "options": ["Yes, he didn't believe", "No, he asked out of awe and wonder", "He was testing the angels", "He was joking"],
+        "answer": 1,
+        "time": 25
+      },
+      {
+        "id": 10,
+        "question": "Where did the traveler sit down to rest?",
+        "options": ["Inside an ancient hotel", "In the shade beside a crumbling wall", "On top of a high tree", "Inside a deep cave"],
+        "answer": 1,
+        "time": 20
+      },
+      {
+        "id": 11,
+        "question": "How long did Allah cause the man to remain dead / asleep?",
+        "options": ["10 years", "50 years", "100 years", "1,000 years"],
+        "answer": 2,
+        "time": 20
+      },
+      {
+        "id": 12,
+        "question": "While the man was asleep, what happened to the world around him?",
+        "options": ["Time stopped for everything", "The sun never rose", "A century passed, generations died, and the city was rebuilt", "Nothing changed"],
+        "answer": 2,
+        "time": 25
+      },
+      {
+        "id": 13,
+        "question": "When the traveler woke up, how much time did he THINK had passed?",
+        "options": ["100 years", "One month", "A day or part of an afternoon", "Five minutes"],
+        "answer": 2,
+        "time": 20
+      },
+      {
+        "id": 14,
+        "question": "Why did he think only part of a day had passed?",
+        "options": ["The sun was still low in the sky like an afternoon nap", "His alarm clock rang", "He wasn't hungry", "His donkey woke him up"],
+        "answer": 0,
+        "time": 20
+      },
+      {
+        "id": 15,
+        "question": "Who spoke to the man when he woke up to ask how long he had remained?",
+        "options": ["A passing traveler", "An angel sent by Allah", "The king of the city", "His family"],
+        "answer": 1,
+        "time": 20
+      },
+      {
+        "id": 16,
+        "question": "How did the traveler feel when told he had slept for 100 years?",
+        "options": ["Bored", "Astonished and shocked", "Angry", "Uninterested"],
+        "answer": 1,
+        "time": 20
+      },
+      {
+        "id": 17,
+        "question": "What normally happens to fresh milk and fruit left in the desert heat for days?",
+        "options": ["They get sweeter", "They spoil, sour, stink, and rot", "They turn into ice", "Nothing"],
+        "answer": 1,
+        "time": 20
+      },
+      {
+        "id": 18,
+        "question": "What happened to the traveler's food and drink after 100 years?",
+        "options": ["They disappeared", "They stayed completely fresh and unspoiled", "They turned to stone", "Animals ate them"],
+        "answer": 1,
+        "time": 20
+      },
+      {
+        "id": 19,
+        "question": "What had happened to the donkey after 100 years?",
+        "options": ["It ran away", "It was sleeping", "It died and decayed into scattered bones", "It turned into gold"],
+        "answer": 2,
+        "time": 20
+      },
+      {
+        "id": 20,
+        "question": "What did the donkey's dry bones do when Allah commanded them?",
+        "options": ["Dissolved into dust", "Vibrated, rose, and reassembled together", "Turned into silver", "Stayed motionless"],
+        "answer": 1,
+        "time": 20
+      },
+      {
+        "id": 21,
+        "question": "What did Allah cover the reassembled bones with?",
+        "options": ["Leather and wood", "Flesh, veins, skin, and fur", "Armor and iron", "Feathers"],
+        "answer": 1,
+        "time": 20
+      },
+      {
+        "id": 22,
+        "question": "What sound did the donkey make after coming back to life?",
+        "options": ["It barked", "It roared", "It brayed loudly ('Hee-haw!')", "It chirped"],
+        "answer": 2,
+        "time": 20
+      },
+      {
+        "id": 23,
+        "question": "Why did Allah show two opposite miracles (fresh food vs. decayed donkey)?",
+        "options": ["To confuse him", "To show He can both freeze time and restore decayed life", "By total coincidence", "Because fruit is tougher than donkeys"],
+        "answer": 1,
+        "time": 25
+      },
+      {
+        "id": 24,
+        "question": "What did the traveler declare when he witnessed this miracle?",
+        "options": ["I am the greatest traveler!", "I want to go back to sleep!", "I know that Allah is capable of all things!", "This is magic!"],
+        "answer": 2,
+        "time": 25
+      },
+      {
+        "id": 25,
+        "question": "What does the miracle of the donkey teach us about the Day of Resurrection?",
+        "options": ["That it is impossible", "That it happens by human science", "That Allah can easily resurrect all humans, just like the donkey", "Only animals are resurrected"],
+        "answer": 2,
+        "time": 25
+      },
+      {
+        "id": 26,
+        "question": "What does this story teach us about Allah's power over time?",
+        "options": ["Allah controls time completely—He can pause it or accelerate it", "Time is stronger than Allah", "Nature controls time", "Time cannot change"],
+        "answer": 0,
+        "time": 20
+      },
+      {
+        "id": 27,
+        "question": "When we face a situation that feels completely hopeless, what should we remember?",
+        "options": ["Give up right away", "Trust only in wealth", "Nothing is too hard for Allah, He can bring life to what seems lost", "Complain"],
+        "answer": 2,
+        "time": 20
+      },
+      {
+        "id": 28,
+        "question": "What should we do when we have sincere questions about our faith?",
+        "options": ["Hide our questions", "Ask with humility to learn and strengthen faith", "Argue proudly", "Stop caring"],
+        "answer": 1,
+        "time": 20
+      },
+      {
+        "id": 29,
+        "question": "Who was the righteous traveler traditionally identified as in Tafsir?",
+        "options": ["Prophet Musa", "Prophet Yusuf", "'Uzair (Ezra) or Prophet Jeremiah", "Prophet Yunus"],
+        "answer": 2,
+        "time": 20
+      },
+      {
+        "id": 30,
+        "question": "What is the ultimate core message of Surah Al-Baqarah 2:259?",
+        "options": ["Donkeys live for 100 years", "Always pack grapes when traveling", "Allah has absolute power over life, death, time, and all creation", "Never visit ruins"],
+        "answer": 2,
+        "time": 25
+      }
+    ]
+  },
+  "ibrahim_birds": {
+    "title": "Prophet Ibrahim: The Arrogant King & The Four Birds",
+    "surah": "Surah Al-Baqarah (2:258 & 2:260)",
+    "description": "Two incredible miracles that proved Allah's power over life and death.",
+    "questions": [
+      {
+        "id": 1,
+        "question": "Who is the main prophet in this story?",
+        "options": ["Prophet Musa", "Prophet Nuh", "Prophet Ibrahim", "Prophet Isa"],
+        "answer": 2,
+        "time": 20
+      },
+      {
+        "id": 2,
+        "question": "What made the king behave so badly?",
+        "options": ["His kindness", "His hunger", "His arrogance", "His sadness"],
+        "answer": 2,
+        "time": 20
+      },
+      {
+        "id": 3,
+        "question": "What did Prophet Ibrahim say Allah can do?",
+        "options": ["Build palaces", "Give life and cause death", "Make golden crowns", "Command armies"],
+        "answer": 1,
+        "time": 20
+      },
+      {
+        "id": 4,
+        "question": "What challenge did Ibrahim give the arrogant king?",
+        "options": ["Move a mountain", "Stop the rain", "Bring the sun from the west", "Turn stone to gold"],
+        "answer": 2,
+        "time": 20
+      },
+      {
+        "id": 5,
+        "question": "From which direction does the sun normally rise?",
+        "options": ["East", "West", "North", "South"],
+        "answer": 0,
+        "time": 20
+      },
+      {
+        "id": 6,
+        "question": "What happened to the king after Ibrahim challenged him about the sun?",
+        "options": ["He laughed", "He moved the sun", "He was left speechless and stunned", "He became a prophet"],
+        "answer": 2,
+        "time": 20
+      },
+      {
+        "id": 7,
+        "question": "What did Prophet Ibrahim ask Allah to show him?",
+        "options": ["How to build a ship", "How to fly", "How Allah brings the dead back to life", "Where treasures are"],
+        "answer": 2,
+        "time": 20
+      },
+      {
+        "id": 8,
+        "question": "Why did Ibrahim ask Allah to show him the miracle of the dead?",
+        "options": ["To become famous", "To reassure his heart", "To show off to friends", "Because he doubted Allah"],
+        "answer": 1,
+        "time": 25
+      },
+      {
+        "id": 9,
+        "question": "How many birds did Allah tell Ibrahim to take?",
+        "options": ["Two", "Three", "Four", "Seven"],
+        "answer": 2,
+        "time": 20
+      },
+      {
+        "id": 10,
+        "question": "Where did Allah tell Ibrahim to place portions of the birds?",
+        "options": ["Inside a palace", "Under a tree", "On separate hills and mountains", "In a river"],
+        "answer": 2,
+        "time": 20
+      },
+      {
+        "id": 11,
+        "question": "What happened when Ibrahim called the birds?",
+        "options": ["Nothing happened", "The mountains shook", "The birds came flying back to him alive", "The birds turned into stone"],
+        "answer": 2,
+        "time": 20
+      },
+      {
+        "id": 12,
+        "question": "What does Al-Aziz mean when describing Allah?",
+        "options": ["The Forgetful", "The Weak", "The Almighty", "The Quiet"],
+        "answer": 2,
+        "time": 20
+      },
+      {
+        "id": 13,
+        "question": "What does Al-Hakim mean when describing Allah?",
+        "options": ["The Fastest", "The All-Wise", "The Tallest", "The Loudest"],
+        "answer": 1,
+        "time": 20
+      },
+      {
+        "id": 14,
+        "question": "What important event does the miracle of the birds remind us of?",
+        "options": ["The start of Ramadan", "Building the Ka'bah", "The Day of Resurrection", "The Hijrah"],
+        "answer": 2,
+        "time": 25
+      },
+      {
+        "id": 15,
+        "question": "What was the arrogant king traditionally named in historical accounts?",
+        "options": ["Pharaoh", "Talut", "Nimrod", "Jalut"],
+        "answer": 2,
+        "time": 20
+      }
+    ]
+  }
+}
