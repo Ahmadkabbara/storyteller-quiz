@@ -28,11 +28,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 
 app.get('/reviews', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'reviews.html'));
+  res.sendFile('reviews.html', { root: path.join(__dirname, 'public') });
 });
 
 app.get('/testimonials', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'reviews.html'));
+  res.sendFile('reviews.html', { root: path.join(__dirname, 'public') });
 });
 
 app.get('/api/stories', (req, res) => {
