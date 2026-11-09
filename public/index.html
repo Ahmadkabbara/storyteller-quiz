@@ -372,7 +372,7 @@
           <span><span class="step-num">1</span> Your Nickname</span>
           <button type="button" class="btn-random-name" id="btnRandomName">🎲 Random Name</button>
         </div>
-        <input type="text" id="inputName" class="input-field" placeholder="Enter your nickname..." maxlength="20" autofocus>
+        <input type="text" id="inputName" class="input-field" placeholder="Enter your nickname..." maxlength="32" autofocus>
       </div>
 
       <div class="form-group">
@@ -443,13 +443,16 @@
 
     <!-- ================= VIEW 4: FINISHED ================= -->
     <section id="view-finished">
-      <div style="font-size: 72px;">🏆</div>
-      <div style="font-size: 32px; font-weight: 900; color: #FDE68A; font-family: 'Fredoka', sans-serif;">
+      <div id="finishedIcon" style="font-size: 72px;">🏆</div>
+      <div id="finishedTitle" style="font-size: 32px; font-weight: 900; color: #FDE68A; font-family: 'Fredoka', sans-serif;">
         YOU REACHED THE TROPHY!
       </div>
-      <div class="waiting-banner">
+      <div id="finishedRankBadge" style="display: none; background: linear-gradient(135deg, #F59E0B, #B45309); border: 2px solid #FDE68A; color: white; font-size: 26px; font-weight: 900; font-family: 'Fredoka', sans-serif; padding: 10px 26px; border-radius: 20px; box-shadow: 0 8px 25px rgba(245, 158, 11, 0.5);">
+        🔒 Locked Place: #1
+      </div>
+      <div class="waiting-banner" id="finishedBannerText">
         🌟 <strong>Incredible Quest!</strong><br><br>
-        Your Fez avatar has reached the finish line! Look up at the big screen to see your final podium standing!
+        Your Fez avatar has reached the finish line and your rank is officially locked! Look up at the big screen to see the final podium!
       </div>
     </section>
   </main>
@@ -618,7 +621,7 @@
         // Automatic seamless transition to next question
         setTimeout(() => {
           if (result.isFinished || currentIdx + 1 >= questionsList.length) {
-            showFinishedScreen();
+            showFinishedScreen(result.lockedRank);
           } else {
             loadQuestion(currentIdx + 1);
           }
@@ -626,11 +629,43 @@
       });
     }
 
-    function showFinishedScreen() {
+    function getOrdinal(n) {
+      const s = ['th', 'st', 'nd', 'rd'];
+      const v = n % 100;
+      return n + (s[(v - 20) % 10] || s[v] || s[0]);
+    }
+
+    function showFinishedScreen(lockedRank, endedEarly = false) {
+      document.getElementById('view-waiting').style.display = 'none';
       document.getElementById('view-race').style.display = 'none';
       document.getElementById('view-finished').style.display = 'flex';
+
+      if (lockedRank) {
+        const badge = document.getElementById('finishedRankBadge');
+        badge.style.display = 'inline-block';
+        badge.textContent = `🔒 Locked in ${getOrdinal(lockedRank)} Place!`;
+      }
+      if (endedEarly) {
+        document.getElementById('finishedTitle').textContent = 'QUEST COMPLETE!';
+      }
+
       confetti({ particleCount: 120, spread: 80 });
     }
+
+    socket.on('race:finished', ({ allStandings }) => {
+      let myRank = null;
+      if (Array.isArray(allStandings)) {
+        const me = allStandings.find(s => s.id === socket.id);
+        if (me) myRank = me.lockedRank;
+      }
+      if (document.getElementById('view-finished').style.display !== 'flex') {
+        showFinishedScreen(myRank, true);
+      } else if (myRank) {
+        const badge = document.getElementById('finishedRankBadge');
+        badge.style.display = 'inline-block';
+        badge.textContent = `🔒 Locked in ${getOrdinal(myRank)} Place!`;
+      }
+    });
 
     initAvatars();
   </script>
