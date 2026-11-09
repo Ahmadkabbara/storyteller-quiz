@@ -27,6 +27,14 @@ let questionBank = loadQuestionBank();
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 
+app.get('/reviews', (req, res) => {
+  res.sendFile('reviews.html', { root: path.join(__dirname, 'public') });
+});
+
+app.get('/testimonials', (req, res) => {
+  res.sendFile('reviews.html', { root: path.join(__dirname, 'public') });
+});
+
 app.get('/api/stories', (req, res) => {
   questionBank = loadQuestionBank();
   const list = Object.keys(questionBank).map(key => ({
@@ -88,6 +96,7 @@ io.on('connection', (socket) => {
       raceDuration: 360, // 6 minutes total race time
       raceStartTime: null,
       raceTimerInterval: null,
+      nextFinishPlace: 1,
       players: new Map()
     };
 
@@ -160,11 +169,11 @@ io.on('connection', (socket) => {
     if (!room) {
       return callback({ success: false, error: 'Game PIN not found. Please check the screen!' });
     }
-    if (room.state !== 'LOBBY') {
-      return callback({ success: false, error: 'Game has already started!' });
+    if (room.state === 'PODIUM') {
+      return callback({ success: false, error: 'This quest has already finished!' });
     }
 
-    const cleanName = (name || 'Hero').trim().substring(0, 18);
+    const cleanName = (name || 'Hero').trim().substring(0, 32);
     const player = {
       id: socket.id,
       name: cleanName,
@@ -175,7 +184,8 @@ io.on('connection', (socket) => {
       currentQIndex: 0,
       progress: 0, // 0 to 100%
       finished: false,
-      finishTime: null
+      finishTime: null,
+      lockedRank: null
     };
 
     room.players.set(socket.id, player);
@@ -190,7 +200,8 @@ io.on('connection', (socket) => {
         name: player.name,
         avatar: player.avatar,
         score: player.score,
-        progress: 0
+        progress: 0,
+        lockedRank: null
       }
     });
 
@@ -199,6 +210,19 @@ io.on('connection', (socket) => {
       player: { name: player.name, avatar: player.avatar },
       storyTitle: room.storyTitle
     });
+
+    // If the race has already started, immediately launch the late joiner into the race!
+    if (room.state === 'RACING') {
+      const sanitizedQuestions = room.questions.map(q => ({
+        id: q.id,
+        question: q.question,
+        options: q.options
+      }));
+      socket.emit('player:race_started', {
+        totalQuestions: room.questions.length,
+        questions: sanitizedQuestions
+      });
+    }
   });
 
   // Player answers a question in their self-paced race
@@ -236,6 +260,7 @@ io.on('connection', (socket) => {
     if (isFinished && !player.finished) {
       player.finished = true;
       player.finishTime = Date.now();
+      player.lockedRank = room.nextFinishPlace++;
     }
 
     // Broadcast live map movement to Host Screen!
@@ -247,7 +272,8 @@ io.on('connection', (socket) => {
       progress: player.progress,
       score: player.score,
       streak: player.streak,
-      isFinished: player.finished
+      isFinished: player.finished,
+      lockedRank: player.lockedRank
     });
 
     // Send answer result back to player
@@ -259,7 +285,8 @@ io.on('connection', (socket) => {
         totalScore: player.score,
         streak: player.streak,
         progress: player.progress,
-        isFinished
+        isFinished,
+        lockedRank: player.lockedRank
       });
     }
 
@@ -294,11 +321,27 @@ io.on('connection', (socket) => {
 
 function endRace(room) {
   if (room.raceTimerInterval) clearInterval(room.raceTimerInterval);
+  if (room.state === 'PODIUM') return;
   room.state = 'PODIUM';
 
   const sorted = Array.from(room.players.values()).sort((a, b) => {
+    // 1. Anyone who locked a finish rank comes first, strictly in order of lockedRank (1st, 2nd, 3rd...)
+    if (a.lockedRank !== null && b.lockedRank !== null) {
+      return a.lockedRank - b.lockedRank;
+    }
+    if (a.lockedRank !== null) return -1;
+    if (b.lockedRank !== null) return 1;
+
+    // 2. For players still on the trail when time ended, sort by progress then score
     if (b.progress !== a.progress) return b.progress - a.progress;
     return b.score - a.score;
+  });
+
+  // Assign final lockedRank to anyone who didn't finish before the race ended
+  sorted.forEach((p, idx) => {
+    if (p.lockedRank === null) {
+      p.lockedRank = idx + 1;
+    }
   });
 
   const podium = sorted.slice(0, 3).map((p, idx) => ({
@@ -306,11 +349,13 @@ function endRace(room) {
     name: p.name,
     avatar: p.avatar,
     score: p.score,
-    progress: p.progress
+    progress: p.progress,
+    lockedRank: p.lockedRank
   }));
 
   io.to(room.pin).emit('race:finished', {
     podium,
+    allStandings: sorted.map(p => ({ id: p.id, name: p.name, lockedRank: p.lockedRank, score: p.score })),
     totalPlayers: room.players.size
   });
 }
