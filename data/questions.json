@@ -7,210 +7,360 @@
       {
         "id": 1,
         "question": "Which Surah in the Qur'an contains the story of the man who slept for 100 years?",
-        "options": ["Surah Al-Fatiha", "Surah Al-Baqarah", "Surah Al-Kahf", "Surah Ya-Sin"],
+        "options": [
+          "Surah Al-Fatiha",
+          "Surah Al-Baqarah",
+          "Surah Al-Kahf",
+          "Surah Ya-Sin"
+        ],
         "answer": 1,
         "time": 20
       },
       {
         "id": 2,
         "question": "In which verse of Surah Al-Baqarah is this story found?",
-        "options": ["Verse 255", "Verse 259", "Verse 260", "Verse 286"],
+        "options": [
+          "Verse 255",
+          "Verse 259",
+          "Verse 260",
+          "Verse 286"
+        ],
         "answer": 1,
         "time": 20
       },
       {
         "id": 3,
         "question": "What faithful animal was traveling with the righteous man?",
-        "options": ["A camel", "A horse", "A donkey", "An elephant"],
+        "options": [
+          "A camel",
+          "A horse",
+          "A donkey",
+          "An elephant"
+        ],
         "answer": 2,
         "time": 20
       },
       {
         "id": 4,
         "question": "What fresh food did the traveler carry in his basket?",
-        "options": ["Apples and bread", "Ripe figs and grapes", "Rice and lamb", "Fish and vegetables"],
+        "options": [
+          "Apples and bread",
+          "Ripe figs and grapes",
+          "Rice and lamb",
+          "Fish and vegetables"
+        ],
         "answer": 1,
         "time": 20
       },
       {
         "id": 5,
         "question": "What drink did the traveler bring along on his journey?",
-        "options": ["Fresh milk or juice", "Coffee", "Salty water", "Hot tea"],
+        "options": [
+          "Fresh milk or juice",
+          "Coffee",
+          "Salty water",
+          "Hot tea"
+        ],
         "answer": 0,
         "time": 20
       },
       {
         "id": 6,
         "question": "When the traveler reached the city in the valley, what did it look like?",
-        "options": ["A busy market full of merchants", "A grand palace with guards", "A completely destroyed ghost town in ruins", "A lush green garden"],
+        "options": [
+          "A busy market full of merchants",
+          "A grand palace with guards",
+          "A completely destroyed ghost town in ruins",
+          "A lush green garden"
+        ],
         "answer": 2,
         "time": 20
       },
       {
         "id": 7,
         "question": "How does the Qur'an describe the collapsed buildings of the city?",
-        "options": ["Covered in water", "Fallen down over their roofs", "Burned into ashes", "Turned into gold"],
+        "options": [
+          "Covered in water",
+          "Fallen down over their roofs",
+          "Burned into ashes",
+          "Turned into gold"
+        ],
         "answer": 1,
         "time": 20
       },
       {
         "id": 8,
         "question": "What question did the traveler ask when he saw the ruins?",
-        "options": ["Where can I buy food?", "Who built this palace?", "How will Allah bring this city back to life after its death?", "Can I build a house here?"],
+        "options": [
+          "Where can I buy food?",
+          "Who built this palace?",
+          "How will Allah bring this city back to life after its death?",
+          "Can I build a house here?"
+        ],
         "answer": 2,
         "time": 25
       },
       {
         "id": 9,
         "question": "Did the traveler ask his question because he doubted Allah?",
-        "options": ["Yes, he didn't believe", "No, he asked out of awe and wonder", "He was testing the angels", "He was joking"],
+        "options": [
+          "Yes, he didn't believe",
+          "No, he asked out of awe and wonder",
+          "He was testing the angels",
+          "He was joking"
+        ],
         "answer": 1,
         "time": 25
       },
       {
         "id": 10,
         "question": "Where did the traveler sit down to rest?",
-        "options": ["Inside an ancient hotel", "In the shade beside a crumbling wall", "On top of a high tree", "Inside a deep cave"],
+        "options": [
+          "Inside an ancient hotel",
+          "In the shade beside a crumbling wall",
+          "On top of a high tree",
+          "Inside a deep cave"
+        ],
         "answer": 1,
         "time": 20
       },
       {
         "id": 11,
         "question": "How long did Allah cause the man to remain dead / asleep?",
-        "options": ["10 years", "50 years", "100 years", "1,000 years"],
+        "options": [
+          "10 years",
+          "50 years",
+          "100 years",
+          "1,000 years"
+        ],
         "answer": 2,
         "time": 20
       },
       {
         "id": 12,
         "question": "While the man was asleep, what happened to the world around him?",
-        "options": ["Time stopped for everything", "The sun never rose", "A century passed, generations died, and the city was rebuilt", "Nothing changed"],
+        "options": [
+          "Time stopped for everything",
+          "The sun never rose",
+          "A century passed, generations died, and the city was rebuilt",
+          "Nothing changed"
+        ],
         "answer": 2,
         "time": 25
       },
       {
         "id": 13,
         "question": "When the traveler woke up, how much time did he THINK had passed?",
-        "options": ["100 years", "One month", "A day or part of an afternoon", "Five minutes"],
+        "options": [
+          "100 years",
+          "One month",
+          "A day or part of an afternoon",
+          "Five minutes"
+        ],
         "answer": 2,
         "time": 20
       },
       {
         "id": 14,
         "question": "Why did he think only part of a day had passed?",
-        "options": ["The sun was still low in the sky like an afternoon nap", "His alarm clock rang", "He wasn't hungry", "His donkey woke him up"],
+        "options": [
+          "The sun was still low in the sky like an afternoon nap",
+          "His alarm clock rang",
+          "He wasn't hungry",
+          "His donkey woke him up"
+        ],
         "answer": 0,
         "time": 20
       },
       {
         "id": 15,
         "question": "Who spoke to the man when he woke up to ask how long he had remained?",
-        "options": ["A passing traveler", "An angel sent by Allah", "The king of the city", "His family"],
+        "options": [
+          "A passing traveler",
+          "An angel sent by Allah",
+          "The king of the city",
+          "His family"
+        ],
         "answer": 1,
         "time": 20
       },
       {
         "id": 16,
         "question": "How did the traveler feel when told he had slept for 100 years?",
-        "options": ["Bored", "Astonished and shocked", "Angry", "Uninterested"],
+        "options": [
+          "Bored",
+          "Astonished and shocked",
+          "Angry",
+          "Uninterested"
+        ],
         "answer": 1,
         "time": 20
       },
       {
         "id": 17,
         "question": "What normally happens to fresh milk and fruit left in the desert heat for days?",
-        "options": ["They get sweeter", "They spoil, sour, stink, and rot", "They turn into ice", "Nothing"],
+        "options": [
+          "They get sweeter",
+          "They spoil, sour, stink, and rot",
+          "They turn into ice",
+          "Nothing"
+        ],
         "answer": 1,
         "time": 20
       },
       {
         "id": 18,
         "question": "What happened to the traveler's food and drink after 100 years?",
-        "options": ["They disappeared", "They stayed completely fresh and unspoiled", "They turned to stone", "Animals ate them"],
+        "options": [
+          "They disappeared",
+          "They stayed completely fresh and unspoiled",
+          "They turned to stone",
+          "Animals ate them"
+        ],
         "answer": 1,
         "time": 20
       },
       {
         "id": 19,
         "question": "What had happened to the donkey after 100 years?",
-        "options": ["It ran away", "It was sleeping", "It died and decayed into scattered bones", "It turned into gold"],
+        "options": [
+          "It ran away",
+          "It was sleeping",
+          "It died and decayed into scattered bones",
+          "It turned into gold"
+        ],
         "answer": 2,
         "time": 20
       },
       {
         "id": 20,
         "question": "What did the donkey's dry bones do when Allah commanded them?",
-        "options": ["Dissolved into dust", "Vibrated, rose, and reassembled together", "Turned into silver", "Stayed motionless"],
+        "options": [
+          "Dissolved into dust",
+          "Vibrated, rose, and reassembled together",
+          "Turned into silver",
+          "Stayed motionless"
+        ],
         "answer": 1,
         "time": 20
       },
       {
         "id": 21,
         "question": "What did Allah cover the reassembled bones with?",
-        "options": ["Leather and wood", "Flesh, veins, skin, and fur", "Armor and iron", "Feathers"],
+        "options": [
+          "Leather and wood",
+          "Flesh, veins, skin, and fur",
+          "Armor and iron",
+          "Feathers"
+        ],
         "answer": 1,
         "time": 20
       },
       {
         "id": 22,
         "question": "What sound did the donkey make after coming back to life?",
-        "options": ["It barked", "It roared", "It brayed loudly ('Hee-haw!')", "It chirped"],
+        "options": [
+          "It barked",
+          "It roared",
+          "It brayed loudly ('Hee-haw!')",
+          "It chirped"
+        ],
         "answer": 2,
         "time": 20
       },
       {
         "id": 23,
         "question": "Why did Allah show two opposite miracles (fresh food vs. decayed donkey)?",
-        "options": ["To confuse him", "To show He can both freeze time and restore decayed life", "By total coincidence", "Because fruit is tougher than donkeys"],
+        "options": [
+          "To confuse him",
+          "To show He can both freeze time and restore decayed life",
+          "By total coincidence",
+          "Because fruit is tougher than donkeys"
+        ],
         "answer": 1,
         "time": 25
       },
       {
         "id": 24,
         "question": "What did the traveler declare when he witnessed this miracle?",
-        "options": ["I am the greatest traveler!", "I want to go back to sleep!", "I know that Allah is capable of all things!", "This is magic!"],
+        "options": [
+          "I am the greatest traveler!",
+          "I want to go back to sleep!",
+          "I know that Allah is capable of all things!",
+          "This is magic!"
+        ],
         "answer": 2,
         "time": 25
       },
       {
         "id": 25,
         "question": "What does the miracle of the donkey teach us about the Day of Resurrection?",
-        "options": ["That it is impossible", "That it happens by human science", "That Allah can easily resurrect all humans, just like the donkey", "Only animals are resurrected"],
+        "options": [
+          "That it is impossible",
+          "That it happens by human science",
+          "That Allah can easily resurrect all humans, just like the donkey",
+          "Only animals are resurrected"
+        ],
         "answer": 2,
         "time": 25
       },
       {
         "id": 26,
         "question": "What does this story teach us about Allah's power over time?",
-        "options": ["Allah controls time completely—He can pause it or accelerate it", "Time is stronger than Allah", "Nature controls time", "Time cannot change"],
+        "options": [
+          "Allah controls time completely—He can pause it or accelerate it",
+          "Time is stronger than Allah",
+          "Nature controls time",
+          "Time cannot change"
+        ],
         "answer": 0,
         "time": 20
       },
       {
         "id": 27,
         "question": "When we face a situation that feels completely hopeless, what should we remember?",
-        "options": ["Give up right away", "Trust only in wealth", "Nothing is too hard for Allah, He can bring life to what seems lost", "Complain"],
+        "options": [
+          "Give up right away",
+          "Trust only in wealth",
+          "Nothing is too hard for Allah, He can bring life to what seems lost",
+          "Complain"
+        ],
         "answer": 2,
         "time": 20
       },
       {
         "id": 28,
         "question": "What should we do when we have sincere questions about our faith?",
-        "options": ["Hide our questions", "Ask with humility to learn and strengthen faith", "Argue proudly", "Stop caring"],
+        "options": [
+          "Hide our questions",
+          "Ask with humility to learn and strengthen faith",
+          "Argue proudly",
+          "Stop caring"
+        ],
         "answer": 1,
         "time": 20
       },
       {
         "id": 29,
         "question": "Who was the righteous traveler traditionally identified as in Tafsir?",
-        "options": ["Prophet Musa", "Prophet Yusuf", "'Uzair (Ezra) or Prophet Jeremiah", "Prophet Yunus"],
+        "options": [
+          "Prophet Musa",
+          "Prophet Yusuf",
+          "'Uzair (Ezra) or Prophet Jeremiah",
+          "Prophet Yunus"
+        ],
         "answer": 2,
         "time": 20
       },
       {
         "id": 30,
         "question": "What is the ultimate core message of Surah Al-Baqarah 2:259?",
-        "options": ["Donkeys live for 100 years", "Always pack grapes when traveling", "Allah has absolute power over life, death, time, and all creation", "Never visit ruins"],
+        "options": [
+          "Donkeys live for 100 years",
+          "Always pack grapes when traveling",
+          "Allah has absolute power over life, death, time, and all creation",
+          "Never visit ruins"
+        ],
         "answer": 2,
         "time": 25
       }
@@ -224,107 +374,489 @@
       {
         "id": 1,
         "question": "Who is the main prophet in this story?",
-        "options": ["Prophet Musa", "Prophet Nuh", "Prophet Ibrahim", "Prophet Isa"],
+        "options": [
+          "Prophet Musa",
+          "Prophet Nuh",
+          "Prophet Ibrahim",
+          "Prophet Isa"
+        ],
         "answer": 2,
         "time": 20
       },
       {
         "id": 2,
         "question": "What made the king behave so badly?",
-        "options": ["His kindness", "His hunger", "His arrogance", "His sadness"],
+        "options": [
+          "His kindness",
+          "His hunger",
+          "His arrogance",
+          "His sadness"
+        ],
         "answer": 2,
         "time": 20
       },
       {
         "id": 3,
         "question": "What did Prophet Ibrahim say Allah can do?",
-        "options": ["Build palaces", "Give life and cause death", "Make golden crowns", "Command armies"],
+        "options": [
+          "Build palaces",
+          "Give life and cause death",
+          "Make golden crowns",
+          "Command armies"
+        ],
         "answer": 1,
         "time": 20
       },
       {
         "id": 4,
         "question": "What challenge did Ibrahim give the arrogant king?",
-        "options": ["Move a mountain", "Stop the rain", "Bring the sun from the west", "Turn stone to gold"],
+        "options": [
+          "Move a mountain",
+          "Stop the rain",
+          "Bring the sun from the west",
+          "Turn stone to gold"
+        ],
         "answer": 2,
         "time": 20
       },
       {
         "id": 5,
         "question": "From which direction does the sun normally rise?",
-        "options": ["East", "West", "North", "South"],
+        "options": [
+          "East",
+          "West",
+          "North",
+          "South"
+        ],
         "answer": 0,
         "time": 20
       },
       {
         "id": 6,
         "question": "What happened to the king after Ibrahim challenged him about the sun?",
-        "options": ["He laughed", "He moved the sun", "He was left speechless and stunned", "He became a prophet"],
+        "options": [
+          "He laughed",
+          "He moved the sun",
+          "He was left speechless and stunned",
+          "He became a prophet"
+        ],
         "answer": 2,
         "time": 20
       },
       {
         "id": 7,
         "question": "What did Prophet Ibrahim ask Allah to show him?",
-        "options": ["How to build a ship", "How to fly", "How Allah brings the dead back to life", "Where treasures are"],
+        "options": [
+          "How to build a ship",
+          "How to fly",
+          "How Allah brings the dead back to life",
+          "Where treasures are"
+        ],
         "answer": 2,
         "time": 20
       },
       {
         "id": 8,
         "question": "Why did Ibrahim ask Allah to show him the miracle of the dead?",
-        "options": ["To become famous", "To reassure his heart", "To show off to friends", "Because he doubted Allah"],
+        "options": [
+          "To become famous",
+          "To reassure his heart",
+          "To show off to friends",
+          "Because he doubted Allah"
+        ],
         "answer": 1,
         "time": 25
       },
       {
         "id": 9,
         "question": "How many birds did Allah tell Ibrahim to take?",
-        "options": ["Two", "Three", "Four", "Seven"],
+        "options": [
+          "Two",
+          "Three",
+          "Four",
+          "Seven"
+        ],
         "answer": 2,
         "time": 20
       },
       {
         "id": 10,
         "question": "Where did Allah tell Ibrahim to place portions of the birds?",
-        "options": ["Inside a palace", "Under a tree", "On separate hills and mountains", "In a river"],
+        "options": [
+          "Inside a palace",
+          "Under a tree",
+          "On separate hills and mountains",
+          "In a river"
+        ],
         "answer": 2,
         "time": 20
       },
       {
         "id": 11,
         "question": "What happened when Ibrahim called the birds?",
-        "options": ["Nothing happened", "The mountains shook", "The birds came flying back to him alive", "The birds turned into stone"],
+        "options": [
+          "Nothing happened",
+          "The mountains shook",
+          "The birds came flying back to him alive",
+          "The birds turned into stone"
+        ],
         "answer": 2,
         "time": 20
       },
       {
         "id": 12,
         "question": "What does Al-Aziz mean when describing Allah?",
-        "options": ["The Forgetful", "The Weak", "The Almighty", "The Quiet"],
+        "options": [
+          "The Forgetful",
+          "The Weak",
+          "The Almighty",
+          "The Quiet"
+        ],
         "answer": 2,
         "time": 20
       },
       {
         "id": 13,
         "question": "What does Al-Hakim mean when describing Allah?",
-        "options": ["The Fastest", "The All-Wise", "The Tallest", "The Loudest"],
+        "options": [
+          "The Fastest",
+          "The All-Wise",
+          "The Tallest",
+          "The Loudest"
+        ],
         "answer": 1,
         "time": 20
       },
       {
         "id": 14,
         "question": "What important event does the miracle of the birds remind us of?",
-        "options": ["The start of Ramadan", "Building the Ka'bah", "The Day of Resurrection", "The Hijrah"],
+        "options": [
+          "The start of Ramadan",
+          "Building the Ka'bah",
+          "The Day of Resurrection",
+          "The Hijrah"
+        ],
         "answer": 2,
         "time": 25
       },
       {
         "id": 15,
         "question": "What was the arrogant king traditionally named in historical accounts?",
-        "options": ["Pharaoh", "Talut", "Nimrod", "Jalut"],
+        "options": [
+          "Pharaoh",
+          "Talut",
+          "Nimrod",
+          "Jalut"
+        ],
         "answer": 2,
         "time": 20
+      }
+    ]
+  },
+  "badr_and_uhud": {
+    "title": "ب) ملحمة غزوة بدر وجبل الرماة في أُحُد (الآيات 121 – 175)",
+    "surah": "Surah Ali 'Imran (3:121–175)",
+    "description": "The miracle of 5,000 angels at Badr and the great lesson of the Archery Hill at Uhud.",
+    "questions": [
+      {
+        "id": 1,
+        "question": "Which Surah discusses Badr and Uhud?",
+        "options": [
+          "Surah Al-Baqarah",
+          "Surah Ali 'Imran",
+          "Surah Al-Kahf",
+          "Surah An-Nisa"
+        ],
+        "answer": 1,
+        "time": 20
+      },
+      {
+        "id": 2,
+        "question": "How many Muslim fighters fought at Badr?",
+        "options": [
+          "313",
+          "500",
+          "700",
+          "1,000"
+        ],
+        "answer": 0,
+        "time": 15
+      },
+      {
+        "id": 3,
+        "question": "How many soldiers did Quraysh have at Badr?",
+        "options": [
+          "300",
+          "500",
+          "1,000",
+          "3,000"
+        ],
+        "answer": 2,
+        "time": 15
+      },
+      {
+        "id": 4,
+        "question": "How many horses did Muslims have at Badr?",
+        "options": [
+          "2 horses",
+          "10 horses",
+          "50 horses",
+          "100 horses"
+        ],
+        "answer": 0,
+        "time": 15
+      },
+      {
+        "id": 5,
+        "question": "What did Allah send the night before Badr?",
+        "options": [
+          "Heavy thunder",
+          "Gentle rain",
+          "Strong wind",
+          "Dense fog"
+        ],
+        "answer": 1,
+        "time": 15
+      },
+      {
+        "id": 6,
+        "question": "Which angel led the heavenly army?",
+        "options": [
+          "Mika'il",
+          "Jibril",
+          "Israfil",
+          "Azra'il"
+        ],
+        "answer": 1,
+        "time": 15
+      },
+      {
+        "id": 7,
+        "question": "How many angels reinforced the believers at Badr?",
+        "options": [
+          "1,000 angels",
+          "2,000 angels",
+          "3,000 angels",
+          "5,000 angels"
+        ],
+        "answer": 3,
+        "time": 15
+      },
+      {
+        "id": 8,
+        "question": "What color were the angels' turbans?",
+        "options": [
+          "Black",
+          "White",
+          "Green",
+          "Red"
+        ],
+        "answer": 2,
+        "time": 15
+      },
+      {
+        "id": 9,
+        "question": "What is the main lesson from Badr?",
+        "options": [
+          "Weapons win",
+          "Faith wins",
+          "Horses win",
+          "Armor wins"
+        ],
+        "answer": 1,
+        "time": 15
+      },
+      {
+        "id": 10,
+        "question": "Near which mountain was the second battle fought?",
+        "options": [
+          "Mount Uhud",
+          "Mount Sinai",
+          "Mount Hira",
+          "Mount Thawr"
+        ],
+        "answer": 0,
+        "time": 15
+      },
+      {
+        "id": 11,
+        "question": "How many archers were placed on the hill?",
+        "options": [
+          "10 archers",
+          "30 archers",
+          "50 archers",
+          "70 archers"
+        ],
+        "answer": 2,
+        "time": 15
+      },
+      {
+        "id": 12,
+        "question": "Who was the commander of the 50 archers?",
+        "options": [
+          "Khalid ibn Walid",
+          "Abdullah ibn Jubayr",
+          "Hamzah ibn Muttalib",
+          "Talhah ibn Ubayd"
+        ],
+        "answer": 1,
+        "time": 15
+      },
+      {
+        "id": 13,
+        "question": "What was the name of the archery hill?",
+        "options": [
+          "Jabal Thawr",
+          "Jabal Al-Nur",
+          "Jabal Al-Rumat",
+          "Jabal Uhud"
+        ],
+        "answer": 2,
+        "time": 15
+      },
+      {
+        "id": 14,
+        "question": "What was the Prophet's main order to the archers?",
+        "options": [
+          "Chase the enemy",
+          "Hold your post",
+          "Attack the cavalry",
+          "Collect the spoils"
+        ],
+        "answer": 1,
+        "time": 15
+      },
+      {
+        "id": 15,
+        "question": "Even if birds snatch our bodies, archers must:",
+        "options": [
+          "Run down",
+          "Hide away",
+          "Stay put",
+          "Call out"
+        ],
+        "answer": 2,
+        "time": 15
+      },
+      {
+        "id": 16,
+        "question": "Why did most archers leave the hill?",
+        "options": [
+          "They felt tired",
+          "They ran out of arrows",
+          "They wanted spoils",
+          "They got scared"
+        ],
+        "answer": 2,
+        "time": 15
+      },
+      {
+        "id": 17,
+        "question": "How many archers remained on the hill?",
+        "options": [
+          "10 archers",
+          "20 archers",
+          "30 archers",
+          "40 archers"
+        ],
+        "answer": 0,
+        "time": 15
+      },
+      {
+        "id": 18,
+        "question": "Which cavalry leader attacked from behind?",
+        "options": [
+          "Khalid ibn Al-Walid",
+          "Abu Sufyan ibn Harb",
+          "Amr ibn Al-Aas",
+          "Ikrimah ibn Abi Jahl"
+        ],
+        "answer": 0,
+        "time": 15
+      },
+      {
+        "id": 19,
+        "question": "Who shielded the Prophet until his hand was injured?",
+        "options": [
+          "Abu Bakr",
+          "Talhah",
+          "Umar",
+          "Uthman"
+        ],
+        "answer": 1,
+        "time": 15
+      },
+      {
+        "id": 20,
+        "question": "Which brave woman fought to defend the Prophet?",
+        "options": [
+          "Khadijah",
+          "Nusaybah",
+          "Fatimah",
+          "Asma"
+        ],
+        "answer": 1,
+        "time": 15
+      },
+      {
+        "id": 21,
+        "question": "Which beloved uncle of the Prophet was martyred?",
+        "options": [
+          "Al-Abbas",
+          "Hamzah",
+          "Abu Lahab",
+          "Abu Talib"
+        ],
+        "answer": 1,
+        "time": 15
+      },
+      {
+        "id": 22,
+        "question": "How did the Prophet treat the archers after Uhud?",
+        "options": [
+          "With anger",
+          "With punishment",
+          "With mercy",
+          "With silence"
+        ],
+        "answer": 2,
+        "time": 15
+      },
+      {
+        "id": 23,
+        "question": "What phrase did the believers say when threatened?",
+        "options": [
+          "Hasbunallah",
+          "Alhamdulillah",
+          "Astaghfirullah",
+          "Subhanallah"
+        ],
+        "answer": 0,
+        "time": 15
+      },
+      {
+        "id": 24,
+        "question": "What does 'Hasbunallah' mean?",
+        "options": [
+          "Allah is rich",
+          "Allah is enough",
+          "Allah is near",
+          "Allah is king"
+        ],
+        "answer": 1,
+        "time": 15
+      },
+      {
+        "id": 25,
+        "question": "What is our 'Archery Hill' today?",
+        "options": [
+          "Playing games",
+          "Praying Salah",
+          "Eating sweets",
+          "Watching movies"
+        ],
+        "answer": 1,
+        "time": 15
       }
     ]
   }
