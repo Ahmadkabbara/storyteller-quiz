@@ -66,7 +66,26 @@
     .header-status-group {
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 14px;
+    }
+    .header-pin-pill {
+      background: rgba(245, 158, 11, 0.2);
+      border: 2px solid #F59E0B;
+      color: #FDE68A;
+      padding: 6px 18px;
+      border-radius: 20px;
+      font-size: 16px;
+      font-weight: 900;
+      display: none;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 0 18px rgba(245, 158, 11, 0.35);
+    }
+    .header-pin-pill .pin-code {
+      font-size: 22px;
+      font-family: 'Fredoka', sans-serif;
+      color: #FFFFFF;
+      letter-spacing: 2px;
     }
     .race-clock-pill {
       background: rgba(239, 68, 68, 0.2);
@@ -78,6 +97,25 @@
       font-weight: 900;
       font-family: 'Fredoka', sans-serif;
       display: none;
+    }
+    .btn-finish-early {
+      background: linear-gradient(135deg, #EF4444, #B91C1C);
+      color: white;
+      border: 1.5px solid #FCA5A5;
+      border-radius: 20px;
+      padding: 7px 18px;
+      font-size: 15px;
+      font-weight: 900;
+      cursor: pointer;
+      display: none;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 4px 15px rgba(239, 68, 68, 0.45);
+      transition: all 0.2s ease;
+    }
+    .btn-finish-early:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(239, 68, 68, 0.7);
     }
     .story-tag {
       background: rgba(245, 158, 11, 0.15);
@@ -228,7 +266,7 @@
     }
     .players-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(105px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
       gap: 12px;
       overflow-y: auto;
       max-height: 270px;
@@ -238,23 +276,23 @@
       background: #1E293B;
       border: 1.5px solid #334155;
       border-radius: 16px;
-      padding: 8px 4px;
+      padding: 10px 8px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 4px;
+      gap: 6px;
       animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
     .player-chip .avatar-mini { width: 44px; height: 44px; }
     .player-chip .player-name {
-      font-size: 12px;
+      font-size: 13px;
       font-weight: 800;
       color: white;
       text-align: center;
-      max-width: 100%;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
+      width: 100%;
+      word-break: break-word;
+      white-space: normal;
+      line-height: 1.25;
     }
 
     /* ============= VIEW 2: THE ADVENTURE RACE MAP ============= */
@@ -336,19 +374,16 @@
       animation: hopRun 0.4s ease infinite;
     }
     .runner-name-tag {
-      background: rgba(15, 23, 42, 0.9);
+      background: rgba(15, 23, 42, 0.92);
       border: 1px solid #38BDF8;
       color: white;
-      font-size: 10px;
+      font-size: 11px;
       font-weight: 800;
-      padding: 2px 8px;
+      padding: 2px 9px;
       border-radius: 10px;
       white-space: nowrap;
       margin-top: 2px;
-      max-width: 90px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.6);
     }
     .runner-token.leader .runner-name-tag {
       border-color: #F59E0B;
@@ -356,17 +391,17 @@
       background: rgba(245, 158, 11, 0.25);
     }
 
-    /* Live Race Leaderboard Sidebar */
+    /* Live Race Leaderboard Sidebar - Positioned on Top-Left so the road to Trophy is crystal clear */
     .race-sidebar {
       position: absolute;
-      top: 20px;
+      top: 25px;
       left: 30px;
-      width: 280px;
-      background: rgba(15, 23, 42, 0.85);
-      backdrop-filter: blur(12px);
-      border: 1.5px solid rgba(245, 158, 11, 0.3);
+      width: 320px;
+      background: rgba(15, 23, 42, 0.9);
+      backdrop-filter: blur(14px);
+      border: 1.5px solid rgba(245, 158, 11, 0.35);
       border-radius: 20px;
-      padding: 18px;
+      padding: 16px 18px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.6);
       z-index: 30;
       display: flex;
@@ -395,22 +430,59 @@
       border: 1px solid rgba(255,255,255,0.05);
       animation: slideIn 0.3s ease;
     }
-    .race-leader-item:nth-child(2) { border-color: #F59E0B; background: rgba(245, 158, 11, 0.15); }
+    .race-leader-item:nth-child(1) { border-color: #F59E0B; background: rgba(245, 158, 11, 0.15); }
     .leader-rank {
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 900;
       color: #FDE68A;
       font-family: 'Fredoka', sans-serif;
-      width: 22px;
+      min-width: 28px;
     }
     .leader-avatar { width: 32px; height: 32px; flex-shrink: 0; }
-    .leader-info { flex: 1; overflow: hidden; }
+    .leader-info { flex: 1; min-width: 0; }
     .leader-name {
       font-size: 13px;
       font-weight: 800;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      white-space: normal;
+      word-break: break-word;
+      line-height: 1.25;
+    }
+
+    /* Live Join Banner on Map Screen (for late joiners) */
+    .map-join-banner {
+      position: absolute;
+      bottom: 24px;
+      right: 28px;
+      background: rgba(15, 23, 42, 0.94);
+      backdrop-filter: blur(14px);
+      border: 2px solid #F59E0B;
+      border-radius: 20px;
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.65);
+      z-index: 30;
+    }
+    .map-qr-mini {
+      width: 68px;
+      height: 68px;
+      background: white;
+      padding: 5px;
+      border-radius: 12px;
+      flex-shrink: 0;
+    }
+    .map-qr-mini img { width: 100%; height: 100%; object-fit: contain; }
+    .map-join-info { display: flex; flex-direction: column; gap: 2px; }
+    .map-join-label { font-size: 11px; color: #94A3B8; font-weight: 800; text-transform: uppercase; letter-spacing: 0.6px; }
+    .map-join-url { font-size: 13px; color: #38BDF8; font-weight: 800; }
+    .map-join-pin {
+      font-size: 28px;
+      font-weight: 900;
+      color: #F59E0B;
+      font-family: 'Fredoka', sans-serif;
+      letter-spacing: 2px;
+      line-height: 1.1;
     }
     .leader-progress-bar {
       width: 100%;
@@ -513,7 +585,14 @@
       </div>
     </div>
     <div class="header-status-group">
+      <div class="header-pin-pill" id="headerPinPill">
+        <span>🔑 Join PIN:</span>
+        <span class="pin-code" id="headerPinCode">------</span>
+      </div>
       <div class="race-clock-pill" id="raceClockPill">⏳ 06:00</div>
+      <button class="btn-finish-early" id="btnFinishEarly" title="End race early and go to Podium">
+        <span>🛑 Finish Race</span>
+      </button>
       <div class="story-tag" id="headerStoryTag">📖 Select Story</div>
     </div>
   </header>
@@ -586,26 +665,26 @@
           <path d="M 0 450 Q 300 400 600 440 T 1000 400 L 1000 600 L 0 600 Z" fill="#090D16" opacity="0.8" />
 
           <!-- The Winding Trail (Broad Sandy Road) -->
-          <path id="racePathBacking" d="M 80 500 C 250 490, 220 330, 400 320 C 580 310, 520 180, 700 170 C 780 165, 840 120, 900 110"
+          <path id="racePathBacking" d="M 80 510 C 180 550, 220 380, 310 410 C 400 440, 380 270, 500 260 C 620 250, 600 410, 710 390 C 820 370, 770 180, 850 170 C 890 165, 910 130, 930 115"
                 fill="none" stroke="#334155" stroke-width="32" stroke-linecap="round" stroke-linejoin="round" />
-          <path id="racePath" d="M 80 500 C 250 490, 220 330, 400 320 C 580 310, 520 180, 700 170 C 780 165, 840 120, 900 110"
+          <path id="racePath" d="M 80 510 C 180 550, 220 380, 310 410 C 400 440, 380 270, 500 260 C 620 250, 600 410, 710 390 C 820 370, 770 180, 850 170 C 890 165, 910 130, 930 115"
                 fill="none" stroke="url(#pathGrad)" stroke-width="12" stroke-dasharray="16 8" stroke-linecap="round" filter="url(#glow)" />
         </svg>
 
         <!-- Checkpoints Placed Along the Way -->
-        <div class="checkpoint" style="left: 8%; top: 83%;">
+        <div class="checkpoint" style="left: 8%; top: 85%;">
           <div class="checkpoint-icon">⛺</div>
           <div class="checkpoint-label">Start Camp</div>
         </div>
-        <div class="checkpoint" style="left: 38%; top: 54%;">
+        <div class="checkpoint" style="left: 31%; top: 68%;">
           <div class="checkpoint-icon">🌴</div>
           <div class="checkpoint-label">Oasis Springs</div>
         </div>
-        <div class="checkpoint" style="left: 68%; top: 29%;">
+        <div class="checkpoint" style="left: 71%; top: 65%;">
           <div class="checkpoint-icon">🏛️</div>
           <div class="checkpoint-label">Ancient Ruins</div>
         </div>
-        <div class="checkpoint trophy-checkpoint" style="left: 90%; top: 18%;">
+        <div class="checkpoint trophy-checkpoint" style="left: 93%; top: 19%;">
           <div class="checkpoint-icon">🏆</div>
           <div class="checkpoint-label">GOLDEN TROPHY</div>
         </div>
@@ -621,6 +700,18 @@
           <span id="finishCounter">0 Finished</span>
         </div>
         <div id="sidebarList"></div>
+      </div>
+
+      <!-- Late Joiners QR & Game PIN Card on Map Screen -->
+      <div class="map-join-banner">
+        <div class="map-qr-mini">
+          <img id="mapQrImage" src="" alt="Scan to Join">
+        </div>
+        <div class="map-join-info">
+          <div class="map-join-label">Join Race Anytime!</div>
+          <div class="map-join-url" id="mapJoinUrlDisplay">play.thestoryteller.academy</div>
+          <div class="map-join-pin">PIN: <span id="mapPinDisplay">------</span></div>
+        </div>
       </div>
     </section>
 
@@ -707,13 +798,17 @@
         if (!res.success) return alert(res.error);
         currentPin = res.pin;
         document.getElementById('pinDisplay').textContent = currentPin;
+        document.getElementById('headerPinCode').textContent = currentPin;
+        document.getElementById('mapPinDisplay').textContent = currentPin;
         document.getElementById('headerStoryTag').textContent = `📖 ${res.storyTitle}`;
 
         fetch(`/api/qrcode?pin=${currentPin}`)
           .then(r => r.json())
           .then(data => {
             document.getElementById('qrImage').src = data.qrDataUrl;
+            document.getElementById('mapQrImage').src = data.qrDataUrl;
             document.getElementById('joinUrlDisplay').textContent = window.location.host;
+            document.getElementById('mapJoinUrlDisplay').textContent = window.location.host;
           });
       });
     }
@@ -724,6 +819,26 @@
       allPlayers.clear();
       createGame(e.target.value);
     });
+
+    function spawnRunnerToken(p) {
+      const layer = document.getElementById('runnersLayer');
+      if (!layer || document.getElementById(`runner-${p.id}`)) return;
+      const token = document.createElement('div');
+      token.className = 'runner-token';
+      token.id = `runner-${p.id}`;
+
+      const pt = getPointOnTrail(p.progress || 0);
+      const jitterX = (Math.random() - 0.5) * 4;
+      const jitterY = (Math.random() - 0.5) * 6;
+      token.style.left = `${pt.x + jitterX}%`;
+      token.style.top = `${pt.y + jitterY}%`;
+
+      token.innerHTML = `
+        <div class="runner-avatar-box">${getAvatarSvg(p.avatar)}</div>
+        <div class="runner-name-tag">${p.name}</div>
+      `;
+      layer.appendChild(token);
+    }
 
     // 2. Player joins
     socket.on('host:player_joined', ({ playerCount, player }) => {
@@ -739,6 +854,12 @@
         <div class="player-name">${player.name}</div>
       `;
       document.getElementById('playersGrid').appendChild(chip);
+
+      // If race is already active on map screen, spawn their token at Start Camp immediately!
+      if (document.getElementById('screen-map').style.display === 'block') {
+        spawnRunnerToken(player);
+        updateLeaderboard();
+      }
     });
 
     socket.on('host:player_left', ({ playerId, playerCount }) => {
@@ -756,10 +877,17 @@
       socket.emit('host:start_game', { pin: currentPin });
     });
 
+    // Host finishes race early
+    document.getElementById('btnFinishEarly').addEventListener('click', () => {
+      socket.emit('host:end_game', { pin: currentPin });
+    });
+
     socket.on('race:started', () => {
       document.getElementById('screen-lobby').style.display = 'none';
       document.getElementById('screen-map').style.display = 'block';
+      document.getElementById('headerPinPill').style.display = 'flex';
       document.getElementById('raceClockPill').style.display = 'block';
+      document.getElementById('btnFinishEarly').style.display = 'flex';
 
       initMapGeometry();
 
@@ -768,22 +896,7 @@
       layer.innerHTML = '';
 
       allPlayers.forEach(p => {
-        const token = document.createElement('div');
-        token.className = 'runner-token';
-        token.id = `runner-${p.id}`;
-
-        const pt = getPointOnTrail(0);
-        // Add random slight jitter so 50 avatars don't overlap completely
-        const jitterX = (Math.random() - 0.5) * 4;
-        const jitterY = (Math.random() - 0.5) * 6;
-        token.style.left = `${pt.x + jitterX}%`;
-        token.style.top = `${pt.y + jitterY}%`;
-
-        token.innerHTML = `
-          <div class="runner-avatar-box">${getAvatarSvg(p.avatar)}</div>
-          <div class="runner-name-tag">${p.name}</div>
-        `;
-        layer.appendChild(token);
+        spawnRunnerToken(p);
       });
 
       updateLeaderboard();
@@ -798,10 +911,15 @@
         p.score = data.score;
         p.streak = data.streak;
         p.isFinished = data.isFinished;
+        p.lockedRank = data.lockedRank;
       }
 
       // Move player token along the winding trail
-      const token = document.getElementById(`runner-${data.playerId}`);
+      let token = document.getElementById(`runner-${data.playerId}`);
+      if (!token && p) {
+        spawnRunnerToken(p);
+        token = document.getElementById(`runner-${data.playerId}`);
+      }
       if (token) {
         token.classList.add('moving');
         const pt = getPointOnTrail(data.progress);
@@ -809,6 +927,11 @@
         const jitterY = (Math.random() - 0.5) * 4;
         token.style.left = `${pt.x + jitterX}%`;
         token.style.top = `${pt.y + jitterY}%`;
+
+        if (data.lockedRank) {
+          const nameTag = token.querySelector('.runner-name-tag');
+          if (nameTag) nameTag.textContent = `🔒 #${data.lockedRank} ${p ? p.name : data.name}`;
+        }
 
         setTimeout(() => token.classList.remove('moving'), 800);
       }
@@ -824,9 +947,14 @@
       document.getElementById('raceClockPill').textContent = `⏳ ${mins}:${secs}`;
     });
 
-    // Update Top 5 Leaders on Sidebar
+    // Update Top 5 Leaders on Sidebar (strictly preserving locked places!)
     function updateLeaderboard() {
       const sorted = Array.from(allPlayers.values()).sort((a, b) => {
+        if (a.lockedRank != null && b.lockedRank != null) {
+          return a.lockedRank - b.lockedRank;
+        }
+        if (a.lockedRank != null) return -1;
+        if (b.lockedRank != null) return 1;
         if (b.progress !== a.progress) return b.progress - a.progress;
         return b.score - a.score;
       });
@@ -839,10 +967,11 @@
       document.getElementById('finishCounter').textContent = `${finishedCount} Reached Trophy`;
 
       sorted.slice(0, 5).forEach((p, idx) => {
+        const displayRank = p.lockedRank != null ? `🔒#${p.lockedRank}` : `#${idx + 1}`;
         const item = document.createElement('div');
         item.className = 'race-leader-item';
         item.innerHTML = `
-          <div class="leader-rank">#${idx + 1}</div>
+          <div class="leader-rank">${displayRank}</div>
           <div class="leader-avatar">${getAvatarSvg(p.avatar)}</div>
           <div class="leader-info">
             <div class="leader-name">${p.name} ${p.streak > 2 ? '🔥' : ''}</div>
@@ -859,6 +988,8 @@
     // 6. Automatic Podium Finale
     socket.on('race:finished', ({ podium }) => {
       document.getElementById('screen-map').style.display = 'none';
+      document.getElementById('btnFinishEarly').style.display = 'none';
+      document.getElementById('raceClockPill').style.display = 'none';
       document.getElementById('screen-podium').style.display = 'flex';
 
       confetti({ particleCount: 150, spread: 80, origin: { y: 0.6 } });
