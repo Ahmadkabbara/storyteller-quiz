@@ -498,3 +498,539 @@
       border-radius: 3px;
       transition: width 0.4s ease;
     }
+    .leader-score {
+      font-size: 13px;
+      font-weight: 900;
+      color: #38BDF8;
+      font-family: 'Fredoka', sans-serif;
+    }
+
+    /* ============= VIEW 3: PODIUM ============= */
+    #screen-podium {
+      position: absolute;
+      inset: 0;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at center, #1E1B4B 0%, #0F172A 70%, #020617 100%);
+      z-index: 60;
+      text-align: center;
+    }
+    .podium-container {
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 40px;
+      height: 380px;
+    }
+    .podium-slot { display: flex; flex-direction: column; align-items: center; width: 200px; }
+    .podium-avatar {
+      width: 110px;
+      height: 110px;
+      margin-bottom: 12px;
+      filter: drop-shadow(0 10px 15px rgba(0,0,0,0.6));
+      animation: float 3s ease-in-out infinite;
+    }
+    .podium-name { font-size: 20px; font-weight: 800; color: white; margin-bottom: 6px; }
+    .podium-score { font-size: 18px; font-weight: 900; color: #FDE68A; font-family: 'Fredoka', sans-serif; margin-bottom: 12px; }
+    .podium-pillar {
+      width: 100%;
+      border-radius: 20px 20px 0 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 50px;
+      font-weight: 900;
+      color: white;
+      font-family: 'Fredoka', sans-serif;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    .podium-1 .podium-pillar { height: 220px; background: linear-gradient(180deg, #F59E0B, #B45309); border: 3px solid #FDE68A; }
+    .podium-2 .podium-pillar { height: 170px; background: linear-gradient(180deg, #94A3B8, #475569); border: 3px solid #CBD5E1; }
+    .podium-3 .podium-pillar { height: 130px; background: linear-gradient(180deg, #D97706, #78350F); border: 3px solid #FBBF24; }
+
+    @keyframes hopRun {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px) rotate(4deg); }
+    }
+    @keyframes pulseTrophy {
+      0%, 100% { transform: scale(1); filter: drop-shadow(0 0 20px rgba(245, 158, 11, 0.7)); }
+      50% { transform: scale(1.08); filter: drop-shadow(0 0 35px rgba(245, 158, 11, 1)); }
+    }
+    @keyframes gentleFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    @keyframes popIn {
+      0% { transform: scale(0.4); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Header Bar -->
+  <header>
+    <div class="brand-left">
+      <img src="/assets/logo-storyteller.png" alt="The Storyteller" class="brand-logo-img">
+      <div>
+        <div class="brand-title">The Storyteller Ahmad Kabbara</div>
+        <div class="brand-sub">Ottawa Uyghur Center • Adventure Race 🏆</div>
+      </div>
+    </div>
+    <div class="header-status-group">
+      <div class="header-pin-pill" id="headerPinPill">
+        <span>🔑 Join PIN:</span>
+        <span class="pin-code" id="headerPinCode">------</span>
+      </div>
+      <div class="race-clock-pill" id="raceClockPill">⏳ 06:00</div>
+      <button class="btn-finish-early" id="btnFinishEarly" title="End race early and go to Podium">
+        <span>🛑 Finish Race</span>
+      </button>
+      <div class="story-tag" id="headerStoryTag">📖 Select Story</div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ================= VIEW 1: LOBBY ================= -->
+    <section id="screen-lobby">
+      <div class="lobby-top">
+        <div class="join-card">
+          <div class="qr-container">
+            <img id="qrImage" src="" alt="Scan to Play">
+          </div>
+          <div class="join-instructions">
+            <h3>Scan QR Code or visit:</h3>
+            <div class="join-url" id="joinUrlDisplay">play.thestoryteller.academy</div>
+            <div class="pin-label">Game PIN</div>
+            <div class="pin-display" id="pinDisplay">------</div>
+          </div>
+        </div>
+
+        <div class="story-select-card">
+          <div>
+            <div style="font-size: 13px; color: #94A3B8; font-weight: 700; text-transform: uppercase; margin-bottom: 6px;">Choose Story Race:</div>
+            <select id="storyDropdown" class="story-dropdown"></select>
+          </div>
+          <button id="btnStartRace" class="btn-start">
+            <span>🏁 Start Adventure Race!</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="lobby-players-section">
+        <div class="players-header">
+          <div class="players-count-pill">Joined Adventurers: <span id="joinedCount">0</span></div>
+          <div style="color: #94A3B8; font-size: 14px; font-weight: 600;">Kids enter nicknames & wear their red fez! 🎩</div>
+        </div>
+        <div class="players-grid" id="playersGrid"></div>
+      </div>
+    </section>
+
+    <!-- ================= VIEW 2: ADVENTURE MAP (AUTONOMOUS RACE) ================= -->
+    <section id="screen-map">
+      <div class="map-canvas-container">
+        <!-- SVG Desert Map with Winding Stone Trail -->
+        <svg id="trailSvg" width="100%" height="100%" viewBox="0 0 1000 600" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="sandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#1E293B" />
+              <stop offset="50%" stop-color="#1E1B4B" />
+              <stop offset="100%" stop-color="#0F172A" />
+            </linearGradient>
+            <!-- Path Stroke Gradient -->
+            <linearGradient id="pathGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#F59E0B" />
+              <stop offset="50%" stop-color="#10B981" />
+              <stop offset="100%" stop-color="#FBBF24" />
+            </linearGradient>
+            <!-- Glowing Filter -->
+            <filter id="glow">
+              <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+              <feMerge>
+                <feMergeNode in="coloredBlur"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+
+          <!-- Desert Terrain Curves -->
+          <path d="M 0 350 Q 250 280 500 320 T 1000 280 L 1000 600 L 0 600 Z" fill="#0F172A" opacity="0.6" />
+          <path d="M 0 450 Q 300 400 600 440 T 1000 400 L 1000 600 L 0 600 Z" fill="#090D16" opacity="0.8" />
+
+          <!-- The Winding Trail (Broad Sandy Road) -->
+          <path id="racePathBacking" d="M 80 510 C 180 550, 220 380, 310 410 C 400 440, 380 270, 500 260 C 620 250, 600 410, 710 390 C 820 370, 770 180, 850 170 C 890 165, 910 130, 930 115"
+                fill="none" stroke="#334155" stroke-width="32" stroke-linecap="round" stroke-linejoin="round" />
+          <path id="racePath" d="M 80 510 C 180 550, 220 380, 310 410 C 400 440, 380 270, 500 260 C 620 250, 600 410, 710 390 C 820 370, 770 180, 850 170 C 890 165, 910 130, 930 115"
+                fill="none" stroke="url(#pathGrad)" stroke-width="12" stroke-dasharray="16 8" stroke-linecap="round" filter="url(#glow)" />
+        </svg>
+
+        <!-- Checkpoints Placed Along the Way -->
+        <div class="checkpoint" style="left: 8%; top: 85%;">
+          <div class="checkpoint-icon">⛺</div>
+          <div class="checkpoint-label">Start Camp</div>
+        </div>
+        <div class="checkpoint" style="left: 31%; top: 68%;">
+          <div class="checkpoint-icon">🌴</div>
+          <div class="checkpoint-label">Oasis Springs</div>
+        </div>
+        <div class="checkpoint" style="left: 71%; top: 65%;">
+          <div class="checkpoint-icon">🏛️</div>
+          <div class="checkpoint-label">Ancient Ruins</div>
+        </div>
+        <div class="checkpoint trophy-checkpoint" style="left: 93%; top: 19%;">
+          <div class="checkpoint-icon">🏆</div>
+          <div class="checkpoint-label">GOLDEN TROPHY</div>
+        </div>
+
+        <!-- Container for all running player tokens -->
+        <div id="runnersLayer" style="position: absolute; inset: 0;"></div>
+      </div>
+
+      <!-- Live Top 5 Leaderboard Sidebar -->
+      <div class="race-sidebar">
+        <div class="sidebar-title">
+          <span>🏆 Race Leaders</span>
+          <span id="finishCounter">0 Finished</span>
+        </div>
+        <div id="sidebarList"></div>
+      </div>
+
+      <!-- Late Joiners QR & Game PIN Card on Map Screen -->
+      <div class="map-join-banner">
+        <div class="map-qr-mini">
+          <img id="mapQrImage" src="" alt="Scan to Join">
+        </div>
+        <div class="map-join-info">
+          <div class="map-join-label">Join Race Anytime!</div>
+          <div class="map-join-url" id="mapJoinUrlDisplay">play.thestoryteller.academy</div>
+          <div class="map-join-pin">PIN: <span id="mapPinDisplay">------</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= VIEW 3: PODIUM ================= -->
+    <section id="screen-podium">
+      <div style="font-size: 50px; font-weight: 900; background: linear-gradient(to right, #F59E0B, #FDE68A); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+        🎉 Champions of the Quest! 🎉
+      </div>
+      <div class="podium-container" id="podiumContainer"></div>
+      <button onclick="location.reload()" class="btn-start" style="margin-top: 40px;">🔄 Play Another Quest</button>
+    </section>
+  </main>
+
+  <script>
+    const socket = io();
+    let currentPin = null;
+    let allPlayers = new Map(); // id -> player object
+
+    // Web Audio Sound Generator
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    function playBeep(freq = 440, type = 'sine', duration = 0.1) {
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = type;
+      osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+      gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start();
+      osc.stop(audioCtx.currentTime + duration);
+    }
+    function playFanfare() {
+      [523.25, 659.25, 783.99, 1046.50].forEach((freq, idx) => {
+        setTimeout(() => playBeep(freq, 'triangle', 0.25), idx * 120);
+      });
+    }
+
+    // Path geometry for map positioning (SVG path calculation)
+    let pathElement = null;
+    let pathTotalLength = 0;
+
+    function initMapGeometry() {
+      pathElement = document.getElementById('racePath');
+      if (pathElement) {
+        pathTotalLength = pathElement.getTotalLength();
+      }
+    }
+
+    // Get (x, y) percentage coordinates along the winding path
+    function getPointOnTrail(progressPercent) {
+      if (!pathElement || pathTotalLength === 0) {
+        return { x: 8 + (progressPercent * 0.82), y: 83 - (progressPercent * 0.65) };
+      }
+      const clamped = Math.max(0, Math.min(100, progressPercent));
+      const dist = (clamped / 100) * pathTotalLength;
+      const pt = pathElement.getPointAtLength(dist);
+
+      // Convert SVG viewBox (1000 x 600) to percentage
+      return {
+        x: (pt.x / 1000) * 100,
+        y: (pt.y / 600) * 100
+      };
+    }
+
+    // 1. Stories setup
+    async function initStories() {
+      const res = await fetch('/api/stories');
+      const stories = await res.json();
+      const dropdown = document.getElementById('storyDropdown');
+      dropdown.innerHTML = '';
+      stories.forEach(s => {
+        const opt = document.createElement('option');
+        opt.value = s.key;
+        opt.textContent = `${s.title} (${s.questionCount} Qs)`;
+        dropdown.appendChild(opt);
+      });
+      createGame(dropdown.value);
+    }
+
+    function createGame(storyKey) {
+      socket.emit('host:create_game', { storyKey }, (res) => {
+        if (!res.success) return alert(res.error);
+        currentPin = res.pin;
+        document.getElementById('pinDisplay').textContent = currentPin;
+        document.getElementById('headerPinCode').textContent = currentPin;
+        document.getElementById('mapPinDisplay').textContent = currentPin;
+        document.getElementById('headerStoryTag').textContent = `📖 ${res.storyTitle}`;
+
+        fetch(`/api/qrcode?pin=${currentPin}`)
+          .then(r => r.json())
+          .then(data => {
+            document.getElementById('qrImage').src = data.qrDataUrl;
+            document.getElementById('mapQrImage').src = data.qrDataUrl;
+            document.getElementById('joinUrlDisplay').textContent = window.location.host;
+            document.getElementById('mapJoinUrlDisplay').textContent = window.location.host;
+          });
+      });
+    }
+
+    document.getElementById('storyDropdown').addEventListener('change', (e) => {
+      document.getElementById('playersGrid').innerHTML = '';
+      document.getElementById('joinedCount').textContent = '0';
+      allPlayers.clear();
+      createGame(e.target.value);
+    });
+
+    function spawnRunnerToken(p) {
+      const layer = document.getElementById('runnersLayer');
+      if (!layer || document.getElementById(`runner-${p.id}`)) return;
+      const token = document.createElement('div');
+      token.className = 'runner-token';
+      token.id = `runner-${p.id}`;
+
+      const pt = getPointOnTrail(p.progress || 0);
+      const jitterX = (Math.random() - 0.5) * 4;
+      const jitterY = (Math.random() - 0.5) * 6;
+      token.style.left = `${pt.x + jitterX}%`;
+      token.style.top = `${pt.y + jitterY}%`;
+
+      token.innerHTML = `
+        <div class="runner-avatar-box">${getAvatarSvg(p.avatar)}</div>
+        <div class="runner-name-tag">${p.name}</div>
+      `;
+      layer.appendChild(token);
+    }
+
+    // 2. Player joins
+    socket.on('host:player_joined', ({ playerCount, player }) => {
+      document.getElementById('joinedCount').textContent = playerCount;
+      playBeep(587.33, 'sine', 0.15);
+      allPlayers.set(player.id, player);
+
+      const chip = document.createElement('div');
+      chip.className = 'player-chip';
+      chip.id = `lobby-${player.id}`;
+      chip.innerHTML = `
+        <div class="avatar-mini">${getAvatarSvg(player.avatar)}</div>
+        <div class="player-name">${player.name}</div>
+      `;
+      document.getElementById('playersGrid').appendChild(chip);
+
+      // If race is already active on map screen, spawn their token at Start Camp immediately!
+      if (document.getElementById('screen-map').style.display === 'block') {
+        spawnRunnerToken(player);
+        updateLeaderboard();
+      }
+    });
+
+    socket.on('host:player_left', ({ playerId, playerCount }) => {
+      document.getElementById('joinedCount').textContent = playerCount;
+      allPlayers.delete(playerId);
+      const el = document.getElementById(`lobby-${playerId}`);
+      if (el) el.remove();
+      const token = document.getElementById(`runner-${playerId}`);
+      if (token) token.remove();
+      updateLeaderboard();
+    });
+
+    // 3. Host starts race (1-click, completely autonomous from here!)
+    document.getElementById('btnStartRace').addEventListener('click', () => {
+      socket.emit('host:start_game', { pin: currentPin });
+    });
+
+    // Host finishes race early
+    document.getElementById('btnFinishEarly').addEventListener('click', () => {
+      socket.emit('host:end_game', { pin: currentPin });
+    });
+
+    socket.on('race:started', () => {
+      document.getElementById('screen-lobby').style.display = 'none';
+      document.getElementById('screen-map').style.display = 'block';
+      document.getElementById('headerPinPill').style.display = 'flex';
+      document.getElementById('raceClockPill').style.display = 'block';
+      document.getElementById('btnFinishEarly').style.display = 'flex';
+
+      initMapGeometry();
+
+      // Spawn all player tokens at Start Camp (0% progress)
+      const layer = document.getElementById('runnersLayer');
+      layer.innerHTML = '';
+
+      allPlayers.forEach(p => {
+        spawnRunnerToken(p);
+      });
+
+      updateLeaderboard();
+      playFanfare();
+    });
+
+    // 4. Live Progress Update from Player Phone
+    socket.on('race:player_progress', (data) => {
+      const p = allPlayers.get(data.playerId);
+      if (p) {
+        p.progress = data.progress;
+        p.score = data.score;
+        p.streak = data.streak;
+        p.isFinished = data.isFinished;
+        p.lockedRank = data.lockedRank;
+      }
+
+      // Move player token along the winding trail
+      let token = document.getElementById(`runner-${data.playerId}`);
+      if (!token && p) {
+        spawnRunnerToken(p);
+        token = document.getElementById(`runner-${data.playerId}`);
+      }
+      if (token) {
+        token.classList.add('moving');
+        const pt = getPointOnTrail(data.progress);
+        const jitterX = (Math.random() - 0.5) * 3;
+        const jitterY = (Math.random() - 0.5) * 4;
+        token.style.left = `${pt.x + jitterX}%`;
+        token.style.top = `${pt.y + jitterY}%`;
+
+        if (data.lockedRank) {
+          const nameTag = token.querySelector('.runner-name-tag');
+          if (nameTag) nameTag.textContent = `🔒 #${data.lockedRank} ${p ? p.name : data.name}`;
+        }
+
+        setTimeout(() => token.classList.remove('moving'), 800);
+      }
+
+      playBeep(659.25, 'sine', 0.08);
+      updateLeaderboard();
+    });
+
+    // 5. Timer Tick
+    socket.on('race:timer_tick', ({ timeLeft }) => {
+      const mins = Math.floor(timeLeft / 60).toString().padStart(2, '0');
+      const secs = (timeLeft % 60).toString().padStart(2, '0');
+      document.getElementById('raceClockPill').textContent = `⏳ ${mins}:${secs}`;
+    });
+
+    // Update Top 5 Leaders on Sidebar (strictly preserving locked places!)
+    function updateLeaderboard() {
+      const sorted = Array.from(allPlayers.values()).sort((a, b) => {
+        if (a.lockedRank != null && b.lockedRank != null) {
+          return a.lockedRank - b.lockedRank;
+        }
+        if (a.lockedRank != null) return -1;
+        if (b.lockedRank != null) return 1;
+        if (b.progress !== a.progress) return b.progress - a.progress;
+        return b.score - a.score;
+      });
+
+      const list = document.getElementById('sidebarList');
+      list.innerHTML = '';
+
+      let finishedCount = 0;
+      sorted.forEach(p => { if (p.isFinished) finishedCount++; });
+      document.getElementById('finishCounter').textContent = `${finishedCount} Reached Trophy`;
+
+      sorted.slice(0, 5).forEach((p, idx) => {
+        const displayRank = p.lockedRank != null ? `🔒#${p.lockedRank}` : `#${idx + 1}`;
+        const item = document.createElement('div');
+        item.className = 'race-leader-item';
+        item.innerHTML = `
+          <div class="leader-rank">${displayRank}</div>
+          <div class="leader-avatar">${getAvatarSvg(p.avatar)}</div>
+          <div class="leader-info">
+            <div class="leader-name">${p.name} ${p.streak > 2 ? '🔥' : ''}</div>
+            <div class="leader-progress-bar">
+              <div class="leader-progress-fill" style="width: ${p.progress || 0}%;"></div>
+            </div>
+          </div>
+          <div class="leader-score">${p.progress || 0}%</div>
+        `;
+        list.appendChild(item);
+      });
+    }
+
+    // 6. Automatic Podium Finale
+    socket.on('race:finished', ({ podium }) => {
+      document.getElementById('screen-map').style.display = 'none';
+      document.getElementById('btnFinishEarly').style.display = 'none';
+      document.getElementById('raceClockPill').style.display = 'none';
+      document.getElementById('screen-podium').style.display = 'flex';
+
+      confetti({ particleCount: 150, spread: 80, origin: { y: 0.6 } });
+      setTimeout(() => confetti({ particleCount: 100, spread: 120 }), 1500);
+
+      const container = document.getElementById('podiumContainer');
+      container.innerHTML = '';
+
+      if (podium[1]) {
+        container.innerHTML += `
+          <div class="podium-slot podium-2">
+            <div class="podium-avatar">${getAvatarSvg(podium[1].avatar)}</div>
+            <div class="podium-name">${podium[1].name}</div>
+            <div class="podium-score">${podium[1].score.toLocaleString()} pts</div>
+            <div class="podium-pillar">2</div>
+          </div>
+        `;
+      }
+      if (podium[0]) {
+        container.innerHTML += `
+          <div class="podium-slot podium-1">
+            <div class="podium-avatar">${getAvatarSvg(podium[0].avatar)}</div>
+            <div class="podium-name">${podium[0].name} 👑</div>
+            <div class="podium-score">${podium[0].score.toLocaleString()} pts</div>
+            <div class="podium-pillar">1</div>
+          </div>
+        `;
+      }
+      if (podium[2]) {
+        container.innerHTML += `
+          <div class="podium-slot podium-3">
+            <div class="podium-avatar">${getAvatarSvg(podium[2].avatar)}</div>
+            <div class="podium-name">${podium[2].name}</div>
+            <div class="podium-score">${podium[2].score.toLocaleString()} pts</div>
+            <div class="podium-pillar">3</div>
+          </div>
+        `;
+      }
+    });
+
+    initStories();
+  </script>
+</body>
+</html>
