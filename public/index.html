@@ -444,15 +444,19 @@
     <!-- ================= VIEW 4: FINISHED ================= -->
     <section id="view-finished">
       <div id="finishedIcon" style="font-size: 72px;">🏆</div>
-      <div id="finishedTitle" style="font-size: 32px; font-weight: 900; color: #FDE68A; font-family: 'Fredoka', sans-serif;">
-        YOU REACHED THE TROPHY!
+      <div id="finishedTitle" style="font-size: 30px; font-weight: 900; color: #FDE68A; font-family: 'Fredoka', sans-serif;">
+        QUEST COMPLETED!
       </div>
-      <div id="finishedRankBadge" style="display: none; background: linear-gradient(135deg, #F59E0B, #B45309); border: 2px solid #FDE68A; color: white; font-size: 26px; font-weight: 900; font-family: 'Fredoka', sans-serif; padding: 10px 26px; border-radius: 20px; box-shadow: 0 8px 25px rgba(245, 158, 11, 0.5);">
-        🔒 Locked Place: #1
+      <div id="finishedStatsBadge" style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+        <span id="finishedScore" style="background: rgba(56, 189, 248, 0.2); border: 1px solid #38BDF8; color: #38BDF8; font-weight: 800; padding: 6px 16px; border-radius: 14px; font-size: 16px;">0 pts</span>
+        <span id="finishedCorrect" style="background: rgba(16, 185, 129, 0.2); border: 1px solid #10B981; color: #A7F3D0; font-weight: 800; padding: 6px 16px; border-radius: 14px; font-size: 16px;">0 Correct ✓</span>
+      </div>
+      <div id="finishedRankBadge" style="display: none; background: linear-gradient(135deg, #F59E0B, #B45309); border: 2px solid #FDE68A; color: white; font-size: 24px; font-weight: 900; font-family: 'Fredoka', sans-serif; padding: 10px 24px; border-radius: 20px; box-shadow: 0 8px 25px rgba(245, 158, 11, 0.5);">
+        🎯 Live Standing: #1
       </div>
       <div class="waiting-banner" id="finishedBannerText">
-        🌟 <strong>Incredible Quest!</strong><br><br>
-        Your Fez avatar has reached the finish line and your rank is officially locked! Look up at the big screen to see the final podium!
+        🌟 <strong>Fantastic Effort!</strong><br><br>
+        You have answered all questions! Look up at the big screen to watch the live race and see the final podium winners!
       </div>
     </section>
   </main>
@@ -621,7 +625,7 @@
         // Automatic seamless transition to next question
         setTimeout(() => {
           if (result.isFinished || currentIdx + 1 >= questionsList.length) {
-            showFinishedScreen(result.lockedRank);
+            showFinishedScreen(result.currentRank, result.totalScore, result.correctCount, result.totalQuestions);
           } else {
             loadQuestion(currentIdx + 1);
           }
@@ -635,36 +639,58 @@
       return n + (s[(v - 20) % 10] || s[v] || s[0]);
     }
 
-    function showFinishedScreen(lockedRank, endedEarly = false) {
+    function showFinishedScreen(currentRank, totalScore, correctCount, totalQuestions) {
       document.getElementById('view-waiting').style.display = 'none';
       document.getElementById('view-race').style.display = 'none';
       document.getElementById('view-finished').style.display = 'flex';
 
-      if (lockedRank) {
+      if (totalScore != null) {
+        document.getElementById('finishedScore').textContent = `${totalScore.toLocaleString()} pts`;
+      }
+      if (correctCount != null && totalQuestions != null) {
+        document.getElementById('finishedCorrect').textContent = `${correctCount} / ${totalQuestions} Correct ✓`;
+      }
+      if (currentRank) {
         const badge = document.getElementById('finishedRankBadge');
         badge.style.display = 'inline-block';
-        badge.textContent = `🔒 Locked in ${getOrdinal(lockedRank)} Place!`;
-      }
-      if (endedEarly) {
-        document.getElementById('finishedTitle').textContent = 'QUEST COMPLETE!';
+        badge.textContent = `🎯 Live Standing: ${getOrdinal(currentRank)}`;
       }
 
       confetti({ particleCount: 120, spread: 80 });
     }
 
-    socket.on('race:finished', ({ allStandings }) => {
-      let myRank = null;
+    socket.on('race:finished', ({ allStandings, podium }) => {
+      let myStand = null;
       if (Array.isArray(allStandings)) {
-        const me = allStandings.find(s => s.id === socket.id);
-        if (me) myRank = me.lockedRank;
+        myStand = allStandings.find(s => s.id === socket.id);
       }
       if (document.getElementById('view-finished').style.display !== 'flex') {
-        showFinishedScreen(myRank, true);
-      } else if (myRank) {
-        const badge = document.getElementById('finishedRankBadge');
-        badge.style.display = 'inline-block';
-        badge.textContent = `🔒 Locked in ${getOrdinal(myRank)} Place!`;
+        const score = myStand ? myStand.score : null;
+        const correct = myStand ? myStand.correctCount : null;
+        const total = questionsList.length;
+        const rank = myStand ? myStand.rank : null;
+        showFinishedScreen(rank, score, correct, total);
       }
+
+      const badge = document.getElementById('finishedRankBadge');
+      badge.style.display = 'inline-block';
+      if (myStand && myStand.rank) {
+        if (myStand.rank <= 3) {
+          badge.style.background = 'linear-gradient(135deg, #F59E0B, #B45309)';
+          badge.textContent = `👑 PODIUM WINNER! ${getOrdinal(myStand.rank)} Place!`;
+        } else {
+          badge.style.background = 'linear-gradient(135deg, #0284C7, #0369A1)';
+          badge.textContent = `🏆 Final Standing: ${getOrdinal(myStand.rank)} Place!`;
+        }
+      }
+
+      const banner = document.getElementById('finishedBannerText');
+      banner.innerHTML = `
+        🎉 <strong>The Race Has Concluded!</strong><br><br>
+        Congratulations on completing the quest! Look up at the big screen for the trophy ceremony!
+      `;
+
+      confetti({ particleCount: 150, spread: 90 });
     });
 
     initAvatars();

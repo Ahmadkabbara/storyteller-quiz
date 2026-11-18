@@ -256,12 +256,15 @@ io.on('connection', (socket) => {
     player.progress = Math.min(100, Math.round((player.correctCount / totalQ) * 100));
     player.currentQIndex = questionIndex + 1;
 
-    const isFinished = player.currentQIndex >= totalQ || player.progress >= 100;
+    const isFinished = player.currentQIndex >= totalQ;
     if (isFinished && !player.finished) {
       player.finished = true;
       player.finishTime = Date.now();
-      player.lockedRank = room.nextFinishPlace++;
     }
+
+    // Dynamic fair ranking: 1) Most correct answers, 2) Highest score (speed bonus), 3) Earliest finish
+    const sortedNow = getSortedPlayers(room);
+    const liveRank = sortedNow.findIndex(p => p.id === player.id) + 1;
 
     // Broadcast live map movement to Host Screen!
     io.to(room.hostSocketId).emit('race:player_progress', {
@@ -273,7 +276,8 @@ io.on('connection', (socket) => {
       score: player.score,
       streak: player.streak,
       isFinished: player.finished,
-      lockedRank: player.lockedRank
+      finishTime: player.finishTime,
+      currentRank: liveRank
     });
 
     // Send answer result back to player
@@ -283,14 +287,16 @@ io.on('connection', (socket) => {
         correctAnswer: q.answer,
         pointsEarned: points,
         totalScore: player.score,
+        correctCount: player.correctCount,
+        totalQuestions: totalQ,
         streak: player.streak,
         progress: player.progress,
         isFinished,
-        lockedRank: player.lockedRank
+        currentRank: liveRank
       });
     }
 
-    // Check if top players all reached trophy
+    // Check if all players completed their quest
     let finishedCount = 0;
     room.players.forEach(p => { if (p.finished) finishedCount++; });
     if (finishedCount >= room.players.size && room.players.size > 0) {
@@ -319,29 +325,32 @@ io.on('connection', (socket) => {
   });
 });
 
+// FAIR RANKING ALGORITHM:
+// 1. Most Correct Answers (Accuracy first!)
+// 2. Highest Score (Speed bonus on correct answers + streaks)
+// 3. Earliest finish time (Total speed tiebreaker)
+function getSortedPlayers(room) {
+  return Array.from(room.players.values()).sort((a, b) => {
+    if ((b.correctCount || 0) !== (a.correctCount || 0)) {
+      return (b.correctCount || 0) - (a.correctCount || 0);
+    }
+    if ((b.score || 0) !== (a.score || 0)) {
+      return (b.score || 0) - (a.score || 0);
+    }
+    return (a.finishTime || Infinity) - (b.finishTime || Infinity);
+  });
+}
+
 function endRace(room) {
   if (room.raceTimerInterval) clearInterval(room.raceTimerInterval);
   if (room.state === 'PODIUM') return;
   room.state = 'PODIUM';
 
-  const sorted = Array.from(room.players.values()).sort((a, b) => {
-    // 1. Anyone who locked a finish rank comes first, strictly in order of lockedRank (1st, 2nd, 3rd...)
-    if (a.lockedRank !== null && b.lockedRank !== null) {
-      return a.lockedRank - b.lockedRank;
-    }
-    if (a.lockedRank !== null) return -1;
-    if (b.lockedRank !== null) return 1;
+  const sorted = getSortedPlayers(room);
 
-    // 2. For players still on the trail when time ended, sort by progress then score
-    if (b.progress !== a.progress) return b.progress - a.progress;
-    return b.score - a.score;
-  });
-
-  // Assign final lockedRank to anyone who didn't finish before the race ended
+  // Assign official final ranks
   sorted.forEach((p, idx) => {
-    if (p.lockedRank === null) {
-      p.lockedRank = idx + 1;
-    }
+    p.finalRank = idx + 1;
   });
 
   const podium = sorted.slice(0, 3).map((p, idx) => ({
@@ -349,13 +358,20 @@ function endRace(room) {
     name: p.name,
     avatar: p.avatar,
     score: p.score,
-    progress: p.progress,
-    lockedRank: p.lockedRank
+    correctCount: p.correctCount,
+    progress: p.progress
   }));
 
   io.to(room.pin).emit('race:finished', {
     podium,
-    allStandings: sorted.map(p => ({ id: p.id, name: p.name, lockedRank: p.lockedRank, score: p.score })),
+    allStandings: sorted.map(p => ({
+      id: p.id,
+      name: p.name,
+      rank: p.finalRank,
+      score: p.score,
+      correctCount: p.correctCount,
+      progress: p.progress
+    })),
     totalPlayers: room.players.size
   });
 }

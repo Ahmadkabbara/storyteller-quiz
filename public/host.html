@@ -910,8 +910,10 @@
         p.progress = data.progress;
         p.score = data.score;
         p.streak = data.streak;
+        p.correctCount = data.correctCount;
         p.isFinished = data.isFinished;
-        p.lockedRank = data.lockedRank;
+        p.finishTime = data.finishTime;
+        p.currentRank = data.currentRank;
       }
 
       // Move player token along the winding trail
@@ -928,9 +930,15 @@
         token.style.left = `${pt.x + jitterX}%`;
         token.style.top = `${pt.y + jitterY}%`;
 
-        if (data.lockedRank) {
-          const nameTag = token.querySelector('.runner-name-tag');
-          if (nameTag) nameTag.textContent = `🔒 #${data.lockedRank} ${p ? p.name : data.name}`;
+        const nameTag = token.querySelector('.runner-name-tag');
+        if (nameTag) {
+          if (data.progress >= 100) {
+            nameTag.textContent = `🏆 ${p ? p.name : data.name}`;
+          } else if (data.isFinished) {
+            nameTag.textContent = `🏁 ${p ? p.name : data.name}`;
+          } else {
+            nameTag.textContent = p ? p.name : data.name;
+          }
         }
 
         setTimeout(() => token.classList.remove('moving'), 800);
@@ -947,16 +955,19 @@
       document.getElementById('raceClockPill').textContent = `⏳ ${mins}:${secs}`;
     });
 
-    // Update Top 5 Leaders on Sidebar (strictly preserving locked places!)
+    // Update Top 5 Leaders on Sidebar:
+    // 1. Most Correct Answers (Accuracy first!)
+    // 2. Highest Score (Speed bonus on correct answers + streaks)
+    // 3. Earliest finish time
     function updateLeaderboard() {
       const sorted = Array.from(allPlayers.values()).sort((a, b) => {
-        if (a.lockedRank != null && b.lockedRank != null) {
-          return a.lockedRank - b.lockedRank;
+        if ((b.correctCount || 0) !== (a.correctCount || 0)) {
+          return (b.correctCount || 0) - (a.correctCount || 0);
         }
-        if (a.lockedRank != null) return -1;
-        if (b.lockedRank != null) return 1;
-        if (b.progress !== a.progress) return b.progress - a.progress;
-        return b.score - a.score;
+        if ((b.score || 0) !== (a.score || 0)) {
+          return (b.score || 0) - (a.score || 0);
+        }
+        return (a.finishTime || Infinity) - (b.finishTime || Infinity);
       });
 
       const list = document.getElementById('sidebarList');
@@ -964,14 +975,13 @@
 
       let finishedCount = 0;
       sorted.forEach(p => { if (p.isFinished) finishedCount++; });
-      document.getElementById('finishCounter').textContent = `${finishedCount} Reached Trophy`;
+      document.getElementById('finishCounter').textContent = `${finishedCount} Finished Quest`;
 
       sorted.slice(0, 5).forEach((p, idx) => {
-        const displayRank = p.lockedRank != null ? `🔒#${p.lockedRank}` : `#${idx + 1}`;
         const item = document.createElement('div');
         item.className = 'race-leader-item';
         item.innerHTML = `
-          <div class="leader-rank">${displayRank}</div>
+          <div class="leader-rank">#${idx + 1}</div>
           <div class="leader-avatar">${getAvatarSvg(p.avatar)}</div>
           <div class="leader-info">
             <div class="leader-name">${p.name} ${p.streak > 2 ? '🔥' : ''}</div>
@@ -979,7 +989,10 @@
               <div class="leader-progress-fill" style="width: ${p.progress || 0}%;"></div>
             </div>
           </div>
-          <div class="leader-score">${p.progress || 0}%</div>
+          <div class="leader-score" style="display:flex; flex-direction:column; align-items:flex-end;">
+            <span style="font-size:13px; font-weight:800; color:#38BDF8;">${(p.score || 0).toLocaleString()} pts</span>
+            <span style="font-size:11px; color:#94A3B8;">${p.correctCount || 0} ✓ (${p.progress || 0}%)</span>
+          </div>
         `;
         list.appendChild(item);
       });
@@ -1003,7 +1016,10 @@
           <div class="podium-slot podium-2">
             <div class="podium-avatar">${getAvatarSvg(podium[1].avatar)}</div>
             <div class="podium-name">${podium[1].name}</div>
-            <div class="podium-score">${podium[1].score.toLocaleString()} pts</div>
+            <div class="podium-score" style="display:flex; flex-direction:column; gap:2px;">
+              <span style="font-weight:900; color:#FDE68A;">${podium[1].score.toLocaleString()} pts</span>
+              <span style="font-size:12px; color:#A7F3D0; font-weight:700;">${podium[1].correctCount || 0} Correct ✓</span>
+            </div>
             <div class="podium-pillar">2</div>
           </div>
         `;
@@ -1013,7 +1029,10 @@
           <div class="podium-slot podium-1">
             <div class="podium-avatar">${getAvatarSvg(podium[0].avatar)}</div>
             <div class="podium-name">${podium[0].name} 👑</div>
-            <div class="podium-score">${podium[0].score.toLocaleString()} pts</div>
+            <div class="podium-score" style="display:flex; flex-direction:column; gap:2px;">
+              <span style="font-weight:900; color:#FDE68A; font-size:16px;">${podium[0].score.toLocaleString()} pts</span>
+              <span style="font-size:13px; color:#A7F3D0; font-weight:700;">${podium[0].correctCount || 0} Correct ✓</span>
+            </div>
             <div class="podium-pillar">1</div>
           </div>
         `;
@@ -1023,7 +1042,10 @@
           <div class="podium-slot podium-3">
             <div class="podium-avatar">${getAvatarSvg(podium[2].avatar)}</div>
             <div class="podium-name">${podium[2].name}</div>
-            <div class="podium-score">${podium[2].score.toLocaleString()} pts</div>
+            <div class="podium-score" style="display:flex; flex-direction:column; gap:2px;">
+              <span style="font-weight:900; color:#FDE68A;">${podium[2].score.toLocaleString()} pts</span>
+              <span style="font-size:12px; color:#A7F3D0; font-weight:700;">${podium[2].correctCount || 0} Correct ✓</span>
+            </div>
             <div class="podium-pillar">3</div>
           </div>
         `;
