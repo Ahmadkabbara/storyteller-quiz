@@ -554,7 +554,7 @@
     ]
   },
   "badr_and_uhud": {
-    "title": "ب) ملحمة غزوة بدر وجبل الرماة في أُحُد (الآيات 121 – 175)",
+    "title": "The Battles of Badr and Uhud (Verses 121–175)",
     "surah": "Surah Ali 'Imran (3:121–175)",
     "description": "The miracle of 5,000 angels at Badr and the great lesson of the Archery Hill at Uhud.",
     "questions": [
@@ -854,6 +854,313 @@
           "Praying Salah",
           "Eating sweets",
           "Watching movies"
+        ],
+        "answer": 1,
+        "time": 15
+      }
+    ]
+  },
+  "musa_magicians": {
+    "title": "Prophet Musa & The Magicians of Pharaoh",
+    "surah": "Surah Al-A'raf (7:103–126)",
+    "description": "The miraculous wooden staff that swallowed all illusions on the Day of the Festival.",
+    "questions": [
+      {
+        "id": 1,
+        "question": "Which Surah tells this story of Musa?",
+        "options": [
+          "Surah Al-Baqarah",
+          "Surah Ali 'Imran",
+          "Surah Al-A'raf",
+          "Surah Al-Kahf"
+        ],
+        "answer": 2,
+        "time": 15
+      },
+      {
+        "id": 2,
+        "question": "Who was the arrogant ruler of Egypt?",
+        "options": [
+          "Pharaoh",
+          "Nimrod",
+          "Jalut",
+          "Caesar"
+        ],
+        "answer": 0,
+        "time": 15
+      },
+      {
+        "id": 3,
+        "question": "Who accompanied Musa to Pharaoh's court?",
+        "options": [
+          "Prophet Yusuf",
+          "Prophet Harun",
+          "Prophet Dawud",
+          "Prophet Isa"
+        ],
+        "answer": 1,
+        "time": 15
+      },
+      {
+        "id": 4,
+        "question": "What came out of Musa's pocket?",
+        "options": [
+          "Golden coins",
+          "Shining white hand",
+          "Fragrant perfume",
+          "Written scripture"
+        ],
+        "answer": 1,
+        "time": 15
+      },
+      {
+        "id": 5,
+        "question": "What was Musa holding in his hand?",
+        "options": [
+          "Iron sword",
+          "Silver shield",
+          "Wooden staff",
+          "Brass bow"
+        ],
+        "answer": 2,
+        "time": 15
+      },
+      {
+        "id": 6,
+        "question": "On what day was the showdown held?",
+        "options": [
+          "Day of Festival",
+          "Day of Friday",
+          "Day of Eclipse",
+          "Day of Harvest"
+        ],
+        "answer": 0,
+        "time": 15
+      },
+      {
+        "id": 7,
+        "question": "What did the magicians ask Pharaoh for?",
+        "options": [
+          "Huge ships",
+          "Golden reward",
+          "Royal horses",
+          "Ancient books"
+        ],
+        "answer": 1,
+        "time": 15
+      },
+      {
+        "id": 8,
+        "question": "What did Pharaoh promise the magicians?",
+        "options": [
+          "Secret magic",
+          "Huge palace",
+          "Royal positions",
+          "Golden crown"
+        ],
+        "answer": 2,
+        "time": 15
+      },
+      {
+        "id": 9,
+        "question": "Who threw their items on the sand first?",
+        "options": [
+          "Prophet Musa",
+          "The magicians",
+          "The spectators",
+          "The guards"
+        ],
+        "answer": 1,
+        "time": 15
+      },
+      {
+        "id": 10,
+        "question": "What items did the magicians throw down?",
+        "options": [
+          "Sharp arrows",
+          "Metal shields",
+          "Ropes and rods",
+          "Glass bottles"
+        ],
+        "answer": 2,
+        "time": 15
+      },
+      {
+        "id": 11,
+        "question": "What did the magicians do to the crowd?",
+        "options": [
+          "Made them sleep",
+          "Bewitched their eyes",
+          "Made them laugh",
+          "Blinded their sight"
+        ],
+        "answer": 1,
+        "time": 15
+      },
+      {
+        "id": 12,
+        "question": "What did the ropes look like to the crowd?",
+        "options": [
+          "Flowing rivers",
+          "Burning flames",
+          "Moving snakes",
+          "Flying birds"
+        ],
+        "answer": 2,
+        "time": 15
+      },
+      {
+        "id": 13,
+        "question": "How did Musa feel for a brief moment?",
+        "options": [
+          "Very sleepy",
+          "Slight fear",
+          "Very proud",
+          "Totally bored"
+        ],
+        "answer": 1,
+        "time": 15
+      },
+      {
+        "id": 14,
+        "question": "What did Allah command Musa to do?",
+        "options": [
+          "Run away",
+          "Throw his staff",
+          "Close his eyes",
+          "Call the guards"
+        ],
+        "answer": 1,
+        "time": 15
+      },
+      {
+        "id": 15,
+        "question": "What did Musa's staff turn into?",
+        "options": [
+          "Fast river",
+          "Giant serpent",
+          "Roaring lion",
+          "Flashing lightning"
+        ],
+        "answer": 1,
+        "time": 15
+      },
+      {
+        "id": 16,
+        "question": "What did the giant serpent do?",
+        "options": [
+          "Stung Pharaoh",
+          "Swallowed the ropes",
+          "Flew away",
+          "Split the earth"
+        ],
+        "answer": 1,
+        "time": 15
+      },
+      {
+        "id": 17,
+        "question": "What happened when Musa touched the serpent?",
+        "options": [
+          "It disappeared",
+          "It bit him",
+          "Became a staff",
+          "Turned into gold"
+        ],
+        "answer": 2,
+        "time": 15
+      },
+      {
+        "id": 18,
+        "question": "What did the magicians immediately do?",
+        "options": [
+          "Ran away",
+          "Fell in prostration",
+          "Asked for gold",
+          "Fought Musa"
+        ],
+        "answer": 1,
+        "time": 15
+      },
+      {
+        "id": 19,
+        "question": "Why did the magicians believe so quickly?",
+        "options": [
+          "They got tired",
+          "Recognized true miracle",
+          "Feared the snakes",
+          "Hated Pharaoh"
+        ],
+        "answer": 1,
+        "time": 15
+      },
+      {
+        "id": 20,
+        "question": "In whom did the magicians declare faith?",
+        "options": [
+          "In themselves",
+          "In Pharaoh",
+          "In Allah",
+          "In Harun"
+        ],
+        "answer": 2,
+        "time": 15
+      },
+      {
+        "id": 21,
+        "question": "How did Pharaoh react to the magicians?",
+        "options": [
+          "He laughed",
+          "Full of rage",
+          "He joined them",
+          "He walked away"
+        ],
+        "answer": 1,
+        "time": 15
+      },
+      {
+        "id": 22,
+        "question": "What punishment did Pharaoh threaten them with?",
+        "options": [
+          "Heavy taxes",
+          "Cut and crucify",
+          "Throw in river",
+          "Lock in prison"
+        ],
+        "answer": 1,
+        "time": 15
+      },
+      {
+        "id": 23,
+        "question": "Did the magicians take back their faith?",
+        "options": [
+          "Yes, they recanted",
+          "No, stayed firm",
+          "Some ran away",
+          "Asked for delay"
+        ],
+        "answer": 1,
+        "time": 15
+      },
+      {
+        "id": 24,
+        "question": "What did the magicians pray to Allah for?",
+        "options": [
+          "Golden treasures",
+          "Patience and faith",
+          "Magic powers",
+          "Long life"
+        ],
+        "answer": 1,
+        "time": 15
+      },
+      {
+        "id": 25,
+        "question": "What is the biggest lesson of this story?",
+        "options": [
+          "Magic is strong",
+          "Truth defeats illusion",
+          "Kings are powerful",
+          "Ropes are useful"
         ],
         "answer": 1,
         "time": 15
