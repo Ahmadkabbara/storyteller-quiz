@@ -39,6 +39,10 @@ app.get('/register', (req, res) => {
   res.sendFile('register.html', { root: path.join(__dirname, 'public') });
 });
 
+app.get('/host', (req, res) => {
+  res.sendFile('host.html', { root: path.join(__dirname, 'public') });
+});
+
 const REGISTRATIONS_FILE = path.join(__dirname, 'data', 'registrations.json');
 
 app.post('/api/register', (req, res) => {
@@ -136,7 +140,7 @@ io.on('connection', (socket) => {
   // ================= HOST EVENTS =================
   socket.on('host:create_game', ({ storyKey }, callback) => {
     questionBank = loadQuestionBank();
-    const story = questionBank[storyKey] || Object.values(questionBank)[0];
+    const story = questionBank[storyKey] || questionBank['nuh_ark'] || Object.values(questionBank)[0];
 
     if (!story || !story.questions || story.questions.length === 0) {
       return callback({ success: false, error: 'No questions found for this story.' });

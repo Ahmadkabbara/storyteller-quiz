@@ -788,8 +788,14 @@
         const opt = document.createElement('option');
         opt.value = s.key;
         opt.textContent = `${s.title} (${s.questionCount} Qs)`;
+        if (s.key === 'nuh_ark') {
+          opt.selected = true;
+        }
         dropdown.appendChild(opt);
       });
+      if (stories.some(s => s.key === 'nuh_ark')) {
+        dropdown.value = 'nuh_ark';
+      }
       createGame(dropdown.value);
     }
 

@@ -1,4 +1,310 @@
 {
+  "nuh_ark": {
+    "title": "The Great Deluge: Prophet Nuh & The Miraculous Ark (25 Qs)",
+    "surah": "Surah Hud (11:36–49)",
+    "questions": [
+      {
+        "id": 1,
+        "question": "In which Surah is this detailed story found?",
+        "options": [
+          "Surah Al-Kahf",
+          "Surah Hud",
+          "Surah Maryam",
+          "Surah Luqman"
+        ],
+        "answer": 1,
+        "time": 15
+      },
+      {
+        "id": 2,
+        "question": "For how long did Nuh call his people?",
+        "options": [
+          "One hundred years",
+          "Three hundred years",
+          "Nine hundred fifty",
+          "Five hundred years"
+        ],
+        "answer": 2,
+        "time": 15
+      },
+      {
+        "id": 3,
+        "question": "Where was Nuh commanded to build the Ark?",
+        "options": [
+          "On dry inland dirt",
+          "Beside a deep river",
+          "Inside a wide cave",
+          "Across a rocky coast"
+        ],
+        "answer": 0,
+        "time": 15
+      },
+      {
+        "id": 4,
+        "question": "How did the chieftains treat Nuh during construction?",
+        "options": [
+          "They helped him build",
+          "They mocked his work",
+          "They bought his timber",
+          "They gave him tools"
+        ],
+        "answer": 1,
+        "time": 15
+      },
+      {
+        "id": 5,
+        "question": "What did Nuh tell the people who mocked him?",
+        "options": [
+          "He asked for pardon",
+          "We will mock you too",
+          "He stopped building",
+          "He left the desert"
+        ],
+        "answer": 1,
+        "time": 15
+      },
+      {
+        "id": 6,
+        "question": "Under whose watchful guidance was the Ark built?",
+        "options": [
+          "The royal guards",
+          "The local elders",
+          "Divine revelation",
+          "The ancient sailors"
+        ],
+        "answer": 2,
+        "time": 15
+      },
+      {
+        "id": 7,
+        "question": "What unusual sign signaled the coming flood?",
+        "options": [
+          "A solar eclipse",
+          "A falling star",
+          "A boiling oven",
+          "A howling wind"
+        ],
+        "answer": 2,
+        "time": 15
+      },
+      {
+        "id": 8,
+        "question": "What animals was Nuh told to load onto the Ark?",
+        "options": [
+          "Only strong horses",
+          "Pairs of every kind",
+          "Only flying birds",
+          "Four kinds of sheep"
+        ],
+        "answer": 1,
+        "time": 15
+      },
+      {
+        "id": 9,
+        "question": "How many people believed and boarded with Nuh?",
+        "options": [
+          "A large majority",
+          "Millions of men",
+          "Only a few people",
+          "Half of the town"
+        ],
+        "answer": 2,
+        "time": 15
+      },
+      {
+        "id": 10,
+        "question": "What sacred word did Nuh say when boarding?",
+        "options": [
+          "Subhan Allah",
+          "Alhamdulillah",
+          "Bismillah",
+          "Astaghfirullah"
+        ],
+        "answer": 2,
+        "time": 15
+      },
+      {
+        "id": 11,
+        "question": "What phrase describes the ship's sailing and resting?",
+        "options": [
+          "In light and shadow",
+          "In Allah's Name",
+          "By wind and sails",
+          "By night and day"
+        ],
+        "answer": 1,
+        "time": 15
+      },
+      {
+        "id": 12,
+        "question": "Who was excluded from safety despite family ties?",
+        "options": [
+          "Nuh's father",
+          "Nuh's son",
+          "Nuh's uncle",
+          "Nuh's sister"
+        ],
+        "answer": 1,
+        "time": 15
+      },
+      {
+        "id": 13,
+        "question": "How did the Qur'an describe the massive waves?",
+        "options": [
+          "Flowing like paths",
+          "Rising like mountains",
+          "Rolling like horses",
+          "Shining like glass"
+        ],
+        "answer": 1,
+        "time": 15
+      },
+      {
+        "id": 14,
+        "question": "Where was Nuh's son standing during the storm?",
+        "options": [
+          "Deep in the cabin",
+          "High on the mast",
+          "In isolated retreat",
+          "Near the rudder"
+        ],
+        "answer": 2,
+        "time": 15
+      },
+      {
+        "id": 15,
+        "question": "What loving call did Nuh shout to his son?",
+        "options": [
+          "Jump into water",
+          "Ride along with us",
+          "Row with the oars",
+          "Bring your mother"
+        ],
+        "answer": 1,
+        "time": 15
+      },
+      {
+        "id": 16,
+        "question": "Where did the son claim he would find safety?",
+        "options": [
+          "Inside an iron tower",
+          "Across an open valley",
+          "High upon a mountain",
+          "Deep within a cavern"
+        ],
+        "answer": 2,
+        "time": 15
+      },
+      {
+        "id": 17,
+        "question": "What did Nuh tell his son about safety that day?",
+        "options": [
+          "Mountains are safe",
+          "No protector today",
+          "The storm will stop",
+          "You can swim well"
+        ],
+        "answer": 1,
+        "time": 15
+      },
+      {
+        "id": 18,
+        "question": "What suddenly separated the father from his son?",
+        "options": [
+          "A falling timber",
+          "A thick dark fog",
+          "A crashing wave",
+          "A blast of wind"
+        ],
+        "answer": 2,
+        "time": 15
+      },
+      {
+        "id": 19,
+        "question": "What direct command was given to the earth?",
+        "options": [
+          "Shake the rocks",
+          "Swallow your water",
+          "Sprout fresh grass",
+          "Crack your ground"
+        ],
+        "answer": 1,
+        "time": 15
+      },
+      {
+        "id": 20,
+        "question": "What direct command was given to the sky?",
+        "options": [
+          "Rain down hail",
+          "Hold back your rain",
+          "Blow cold winds",
+          "Shine your stars"
+        ],
+        "answer": 1,
+        "time": 15
+      },
+      {
+        "id": 21,
+        "question": "On which famous mountain did the Ark come to rest?",
+        "options": [
+          "Mount Sinai",
+          "Mount Uhud",
+          "Mount Judi",
+          "Mount Hira"
+        ],
+        "answer": 2,
+        "time": 15
+      },
+      {
+        "id": 22,
+        "question": "What did Allah say about Nuh's disobedient son?",
+        "options": [
+          "He was forgiven",
+          "Not of your family",
+          "He became a king",
+          "He built a shelter"
+        ],
+        "answer": 1,
+        "time": 15
+      },
+      {
+        "id": 23,
+        "question": "What defines true family according to the verse?",
+        "options": [
+          "Shared wealth",
+          "Ancient blood",
+          "Righteous faith",
+          "Spoken dialect"
+        ],
+        "answer": 2,
+        "time": 15
+      },
+      {
+        "id": 24,
+        "question": "How was Nuh told to disembark from the Ark?",
+        "options": [
+          "In deep sorrow",
+          "In divine peace",
+          "In heavy silence",
+          "In fearful haste"
+        ],
+        "answer": 1,
+        "time": 15
+      },
+      {
+        "id": 25,
+        "question": "What is the greatest moral of the story of Nuh?",
+        "options": [
+          "Wood floats well",
+          "Faith saves souls",
+          "Ships need sails",
+          "Rain falls hard"
+        ],
+        "answer": 1,
+        "time": 15
+      }
+    ]
+  },
   "the_100_year_sleep": {
     "title": "The 100-Year Sleep & The Miracle of the Donkey",
     "surah": "Surah Al-Baqarah (2:259)",
@@ -1161,312 +1467,6 @@
           "Truth defeats illusion",
           "Kings are powerful",
           "Ropes are useful"
-        ],
-        "answer": 1,
-        "time": 15
-      }
-    ]
-  },
-  "nuh_ark": {
-    "title": "The Great Deluge: Prophet Nuh & The Miraculous Ark (25 Qs)",
-    "surah": "Surah Hud (11:36–49)",
-    "questions": [
-      {
-        "id": 1,
-        "question": "In which Surah is this detailed story found?",
-        "options": [
-          "Surah Al-Kahf",
-          "Surah Hud",
-          "Surah Maryam",
-          "Surah Luqman"
-        ],
-        "answer": 1,
-        "time": 15
-      },
-      {
-        "id": 2,
-        "question": "For how long did Nuh call his people?",
-        "options": [
-          "One hundred years",
-          "Three hundred years",
-          "Nine hundred fifty",
-          "Five hundred years"
-        ],
-        "answer": 2,
-        "time": 15
-      },
-      {
-        "id": 3,
-        "question": "Where was Nuh commanded to build the Ark?",
-        "options": [
-          "On dry inland dirt",
-          "Beside a deep river",
-          "Inside a wide cave",
-          "Across a rocky coast"
-        ],
-        "answer": 0,
-        "time": 15
-      },
-      {
-        "id": 4,
-        "question": "How did the chieftains treat Nuh during construction?",
-        "options": [
-          "They helped him build",
-          "They mocked his work",
-          "They bought his timber",
-          "They gave him tools"
-        ],
-        "answer": 1,
-        "time": 15
-      },
-      {
-        "id": 5,
-        "question": "What did Nuh tell the people who mocked him?",
-        "options": [
-          "He asked for pardon",
-          "We will mock you too",
-          "He stopped building",
-          "He left the desert"
-        ],
-        "answer": 1,
-        "time": 15
-      },
-      {
-        "id": 6,
-        "question": "Under whose watchful guidance was the Ark built?",
-        "options": [
-          "The royal guards",
-          "The local elders",
-          "Divine revelation",
-          "The ancient sailors"
-        ],
-        "answer": 2,
-        "time": 15
-      },
-      {
-        "id": 7,
-        "question": "What unusual sign signaled the coming flood?",
-        "options": [
-          "A solar eclipse",
-          "A falling star",
-          "A boiling oven",
-          "A howling wind"
-        ],
-        "answer": 2,
-        "time": 15
-      },
-      {
-        "id": 8,
-        "question": "What animals was Nuh told to load onto the Ark?",
-        "options": [
-          "Only strong horses",
-          "Pairs of every kind",
-          "Only flying birds",
-          "Four kinds of sheep"
-        ],
-        "answer": 1,
-        "time": 15
-      },
-      {
-        "id": 9,
-        "question": "How many people believed and boarded with Nuh?",
-        "options": [
-          "A large majority",
-          "Millions of men",
-          "Only a few people",
-          "Half of the town"
-        ],
-        "answer": 2,
-        "time": 15
-      },
-      {
-        "id": 10,
-        "question": "What sacred word did Nuh say when boarding?",
-        "options": [
-          "Subhan Allah",
-          "Alhamdulillah",
-          "Bismillah",
-          "Astaghfirullah"
-        ],
-        "answer": 2,
-        "time": 15
-      },
-      {
-        "id": 11,
-        "question": "What phrase describes the ship's sailing and resting?",
-        "options": [
-          "In light and shadow",
-          "In Allah's Name",
-          "By wind and sails",
-          "By night and day"
-        ],
-        "answer": 1,
-        "time": 15
-      },
-      {
-        "id": 12,
-        "question": "Who was excluded from safety despite family ties?",
-        "options": [
-          "Nuh's father",
-          "Nuh's son",
-          "Nuh's uncle",
-          "Nuh's sister"
-        ],
-        "answer": 1,
-        "time": 15
-      },
-      {
-        "id": 13,
-        "question": "How did the Qur'an describe the massive waves?",
-        "options": [
-          "Flowing like paths",
-          "Rising like mountains",
-          "Rolling like horses",
-          "Shining like glass"
-        ],
-        "answer": 1,
-        "time": 15
-      },
-      {
-        "id": 14,
-        "question": "Where was Nuh's son standing during the storm?",
-        "options": [
-          "Deep in the cabin",
-          "High on the mast",
-          "In isolated retreat",
-          "Near the rudder"
-        ],
-        "answer": 2,
-        "time": 15
-      },
-      {
-        "id": 15,
-        "question": "What loving call did Nuh shout to his son?",
-        "options": [
-          "Jump into water",
-          "Ride along with us",
-          "Row with the oars",
-          "Bring your mother"
-        ],
-        "answer": 1,
-        "time": 15
-      },
-      {
-        "id": 16,
-        "question": "Where did the son claim he would find safety?",
-        "options": [
-          "Inside an iron tower",
-          "Across an open valley",
-          "High upon a mountain",
-          "Deep within a cavern"
-        ],
-        "answer": 2,
-        "time": 15
-      },
-      {
-        "id": 17,
-        "question": "What did Nuh tell his son about safety that day?",
-        "options": [
-          "Mountains are safe",
-          "No protector today",
-          "The storm will stop",
-          "You can swim well"
-        ],
-        "answer": 1,
-        "time": 15
-      },
-      {
-        "id": 18,
-        "question": "What suddenly separated the father from his son?",
-        "options": [
-          "A falling timber",
-          "A thick dark fog",
-          "A crashing wave",
-          "A blast of wind"
-        ],
-        "answer": 2,
-        "time": 15
-      },
-      {
-        "id": 19,
-        "question": "What direct command was given to the earth?",
-        "options": [
-          "Shake the rocks",
-          "Swallow your water",
-          "Sprout fresh grass",
-          "Crack your ground"
-        ],
-        "answer": 1,
-        "time": 15
-      },
-      {
-        "id": 20,
-        "question": "What direct command was given to the sky?",
-        "options": [
-          "Rain down hail",
-          "Hold back your rain",
-          "Blow cold winds",
-          "Shine your stars"
-        ],
-        "answer": 1,
-        "time": 15
-      },
-      {
-        "id": 21,
-        "question": "On which famous mountain did the Ark come to rest?",
-        "options": [
-          "Mount Sinai",
-          "Mount Uhud",
-          "Mount Judi",
-          "Mount Hira"
-        ],
-        "answer": 2,
-        "time": 15
-      },
-      {
-        "id": 22,
-        "question": "What did Allah say about Nuh's disobedient son?",
-        "options": [
-          "He was forgiven",
-          "Not of your family",
-          "He became a king",
-          "He built a shelter"
-        ],
-        "answer": 1,
-        "time": 15
-      },
-      {
-        "id": 23,
-        "question": "What defines true family according to the verse?",
-        "options": [
-          "Shared wealth",
-          "Ancient blood",
-          "Righteous faith",
-          "Spoken dialect"
-        ],
-        "answer": 2,
-        "time": 15
-      },
-      {
-        "id": 24,
-        "question": "How was Nuh told to disembark from the Ark?",
-        "options": [
-          "In deep sorrow",
-          "In divine peace",
-          "In heavy silence",
-          "In fearful haste"
-        ],
-        "answer": 1,
-        "time": 15
-      },
-      {
-        "id": 25,
-        "question": "What is the greatest moral of the story of Nuh?",
-        "options": [
-          "Wood floats well",
-          "Faith saves souls",
-          "Ships need sails",
-          "Rain falls hard"
         ],
         "answer": 1,
         "time": 15
