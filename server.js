@@ -35,6 +35,64 @@ app.get('/testimonials', (req, res) => {
   res.sendFile('reviews.html', { root: path.join(__dirname, 'public') });
 });
 
+app.get('/register', (req, res) => {
+  res.sendFile('register.html', { root: path.join(__dirname, 'public') });
+});
+
+const REGISTRATIONS_FILE = path.join(__dirname, 'data', 'registrations.json');
+
+app.post('/api/register', (req, res) => {
+  try {
+    const { parentName, email, phone, kidsCount, kidsNames, notes, eventTitle } = req.body;
+    if (!parentName || !email) {
+      return res.status(400).json({ error: 'Name and email are required.' });
+    }
+
+    let list = [];
+    if (fs.existsSync(REGISTRATIONS_FILE)) {
+      try {
+        list = JSON.parse(fs.readFileSync(REGISTRATIONS_FILE, 'utf-8') || '[]');
+      } catch (e) {
+        list = [];
+      }
+    }
+
+    const newReg = {
+      id: Date.now().toString(),
+      parentName: parentName.trim(),
+      email: email.trim(),
+      phone: (phone || '').trim(),
+      kidsCount: parseInt(kidsCount, 10) || 1,
+      kidsNames: (kidsNames || '').trim(),
+      notes: (notes || '').trim(),
+      eventTitle: eventTitle || 'Prophet Musa & The Magicians of Pharaoh',
+      date: 'Saturday, November 21, 2026',
+      time: '6:00 PM',
+      registeredAt: new Date().toISOString()
+    };
+
+    list.push(newReg);
+    fs.writeFileSync(REGISTRATIONS_FILE, JSON.stringify(list, null, 2), 'utf-8');
+
+    res.json({ success: true, registration: newReg });
+  } catch (err) {
+    console.error('Registration error:', err);
+    res.status(500).json({ error: 'Failed to save registration' });
+  }
+});
+
+app.get('/api/registrations', (req, res) => {
+  try {
+    if (fs.existsSync(REGISTRATIONS_FILE)) {
+      const list = JSON.parse(fs.readFileSync(REGISTRATIONS_FILE, 'utf-8') || '[]');
+      return res.json(list);
+    }
+    res.json([]);
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to read registrations' });
+  }
+});
+
 app.get('/api/stories', (req, res) => {
   questionBank = loadQuestionBank();
   const list = Object.keys(questionBank).map(key => ({
