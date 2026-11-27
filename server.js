@@ -43,7 +43,47 @@ app.get('/host', (req, res) => {
   res.sendFile('host.html', { root: path.join(__dirname, 'public') });
 });
 
+app.get('/admin', (req, res) => {
+  res.sendFile('admin.html', { root: path.join(__dirname, 'public') });
+});
+
+app.get('/dashboard', (req, res) => {
+  res.sendFile('admin.html', { root: path.join(__dirname, 'public') });
+});
+
 const REGISTRATIONS_FILE = path.join(__dirname, 'data', 'registrations.json');
+
+async function sendNotificationEmail(reg) {
+  try {
+    const payload = {
+      _subject: `🎉 New Event RSVP: ${reg.parentName} (${reg.kidsCount} Children)`,
+      _template: 'table',
+      'Event': reg.eventTitle || 'Prophet Nuh & The Miraculous Ark (Surah Hud)',
+      'Parent Name': reg.parentName,
+      'Email': reg.email,
+      'Phone': reg.phone || 'Not provided',
+      'Children Count': reg.kidsCount,
+      'Children Names & Ages': reg.kidsNames || 'Not specified',
+      'Notes': reg.notes || 'None',
+      'Date & Time': `${reg.date} @ ${reg.time}`,
+      'Location': 'Ottawa Uyghur Center',
+      'Registered At': new Date().toLocaleString('en-US', { timeZone: 'America/Toronto' })
+    };
+
+    const res = await fetch('https://formsubmit.co/ajax/ahmad@kabbara.ca', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify(payload)
+    });
+    const result = await res.json();
+    console.log('Email notification sent:', result);
+  } catch (err) {
+    console.error('Email dispatch error (non-blocking):', err.message);
+  }
+}
 
 app.post('/api/register', (req, res) => {
   try {
@@ -69,14 +109,17 @@ app.post('/api/register', (req, res) => {
       kidsCount: parseInt(kidsCount, 10) || 1,
       kidsNames: (kidsNames || '').trim(),
       notes: (notes || '').trim(),
-      eventTitle: eventTitle || 'Prophet Musa & The Magicians of Pharaoh',
-      date: 'Saturday, November 21, 2026',
+      eventTitle: eventTitle || 'The Great Deluge: Prophet Nuh & The Miraculous Ark',
+      date: 'Saturday, November 28, 2026',
       time: '6:00 PM',
       registeredAt: new Date().toISOString()
     };
 
     list.push(newReg);
     fs.writeFileSync(REGISTRATIONS_FILE, JSON.stringify(list, null, 2), 'utf-8');
+
+    // Send email notification in background
+    sendNotificationEmail(newReg);
 
     res.json({ success: true, registration: newReg });
   } catch (err) {
@@ -94,6 +137,21 @@ app.get('/api/registrations', (req, res) => {
     res.json([]);
   } catch (err) {
     res.status(500).json({ error: 'Failed to read registrations' });
+  }
+});
+
+app.delete('/api/registrations/:id', (req, res) => {
+  try {
+    const id = req.params.id;
+    if (fs.existsSync(REGISTRATIONS_FILE)) {
+      let list = JSON.parse(fs.readFileSync(REGISTRATIONS_FILE, 'utf-8') || '[]');
+      list = list.filter(r => r.id !== id);
+      fs.writeFileSync(REGISTRATIONS_FILE, JSON.stringify(list, null, 2), 'utf-8');
+      return res.json({ success: true, count: list.length });
+    }
+    res.json({ success: true, count: 0 });
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to delete registration' });
   }
 });
 

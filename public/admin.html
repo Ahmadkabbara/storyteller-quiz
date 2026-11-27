@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event Registrations Dashboard | The Storyteller Academy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0F172A;
+      --card: #1E293B;
+      --card-border: #334155;
+      --accent: #F59E0B;
+      --accent-glow: rgba(245, 158, 11, 0.25);
+      --green: #10B981;
+      --blue: #38BDF8;
+      --danger: #EF4444;
+      --text: #F8FAFC;
+      --text-muted: #94A3B8;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Outfit', -apple-system, sans-serif;
+      background: radial-gradient(circle at 50% 0%, #1E1B4B 0%, var(--bg) 70%);
+      color: var(--text);
+      min-height: 100vh;
+      padding-bottom: 60px;
+    }
+
+    /* Auth Overlay */
+    #authOverlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(10px);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .auth-card {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 36px 30px;
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+    }
+    .auth-icon { font-size: 48px; margin-bottom: 12px; }
+    .auth-title { font-family: 'Fredoka', cursive; font-size: 24px; color: var(--accent); margin-bottom: 8px; }
+    .auth-sub { font-size: 14px; color: var(--text-muted); margin-bottom: 24px; }
+    .auth-input {
+      width: 100%;
+      padding: 14px;
+      background: #0B1120;
+      border: 2px solid var(--card-border);
+      border-radius: 12px;
+      color: #fff;
+      font-size: 22px;
+      letter-spacing: 8px;
+      text-align: center;
+      font-weight: 700;
+      outline: none;
+      margin-bottom: 16px;
+      transition: all 0.2s;
+    }
+    .auth-input:focus { border-color: var(--accent); box-shadow: 0 0 15px var(--accent-glow); }
+    .auth-btn {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, #F59E0B, #D97706);
+      color: #0F172A;
+      font-size: 16px;
+      font-weight: 800;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .auth-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4); }
+    .auth-err { color: var(--danger); font-size: 13px; font-weight: 600; margin-top: 10px; display: none; }
+
+    /* Navbar */
+    .nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 24px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      color: inherit;
+    }
+    .nav-logo { height: 42px; width: auto; object-fit: contain; }
+    .nav-title { font-family: 'Fredoka', cursive; font-size: 22px; font-weight: 700; color: #fff; }
+    .nav-tag { font-size: 12px; font-weight: 700; color: var(--accent); background: rgba(245, 158, 11, 0.15); padding: 4px 10px; border-radius: 99px; text-transform: uppercase; }
+    .nav-actions { display: flex; gap: 10px; align-items: center; }
+    .nav-btn {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      color: var(--text-muted);
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .nav-btn:hover { color: #fff; border-color: var(--accent); }
+
+    /* Container */
+    .container { max-width: 1200px; margin: 0 auto; padding: 24px 20px; }
+
+    /* Header */
+    .header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .page-title { font-family: 'Fredoka', cursive; font-size: 32px; color: #fff; }
+    .page-sub { color: var(--text-muted); font-size: 15px; margin-top: 4px; }
+
+    /* Stats Grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .stat-card {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+    .stat-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      flex-shrink: 0;
+    }
+    .stat-icon.gold { background: rgba(245, 158, 11, 0.15); color: var(--accent); }
+    .stat-icon.green { background: rgba(16, 185, 129, 0.15); color: var(--green); }
+    .stat-icon.blue { background: rgba(56, 189, 248, 0.15); color: var(--blue); }
+    .stat-num { font-size: 28px; font-weight: 800; color: #fff; font-family: 'Fredoka', cursive; line-height: 1; }
+    .stat-label { font-size: 13px; color: var(--text-muted); font-weight: 600; margin-top: 4px; }
+
+    /* Action Bar */
+    .action-bar {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 14px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+    .search-box {
+      flex: 1;
+      min-width: 260px;
+      position: relative;
+    }
+    .search-input {
+      width: 100%;
+      padding: 10px 14px 10px 38px;
+      background: #0B1120;
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      color: #fff;
+      font-size: 14px;
+      outline: none;
+    }
+    .search-input:focus { border-color: var(--accent); }
+    .search-icon { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 15px; }
+    .btn-export {
+      background: linear-gradient(135deg, #10B981, #059669);
+      color: #fff;
+      font-weight: 700;
+      padding: 10px 18px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      transition: all 0.2s;
+    }
+    .btn-export:hover { transform: translateY(-1px); box-shadow: 0 4px 14px rgba(16, 185, 129, 0.4); }
+    .btn-refresh {
+      background: #0B1120;
+      border: 1px solid var(--card-border);
+      color: var(--text-muted);
+      padding: 10px 14px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn-refresh:hover { color: #fff; border-color: var(--blue); }
+
+    /* Table Container */
+    .table-card {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+    .table-wrap { overflow-x: auto; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 14px;
+    }
+    th {
+      background: #0B1120;
+      padding: 14px 16px;
+      color: var(--text-muted);
+      font-weight: 700;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-bottom: 1px solid var(--card-border);
+      white-space: nowrap;
+    }
+    td {
+      padding: 16px;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      vertical-align: middle;
+    }
+    tr:hover td { background: rgba(255,255,255,0.02); }
+    .badge-count {
+      display: inline-block;
+      background: rgba(245, 158, 11, 0.15);
+      color: var(--accent);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      padding: 3px 10px;
+      border-radius: 99px;
+      font-weight: 700;
+      font-size: 12px;
+    }
+    .contact-link {
+      color: var(--blue);
+      text-decoration: none;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .contact-link:hover { text-decoration: underline; }
+    .wa-link {
+      color: #25D366;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 12px;
+      margin-left: 6px;
+    }
+    .btn-del {
+      background: none;
+      border: 1px solid transparent;
+      color: var(--danger);
+      opacity: 0.7;
+      padding: 6px 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.2s;
+    }
+    .btn-del:hover { opacity: 1; background: rgba(239, 68, 68, 0.15); border-color: rgba(239, 68, 68, 0.3); }
+
+    /* Empty State */
+    .empty-state {
+      padding: 60px 20px;
+      text-align: center;
+      color: var(--text-muted);
+    }
+    .empty-icon { font-size: 48px; margin-bottom: 12px; }
+
+    /* Toast */
+    #toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #10B981;
+      color: #fff;
+      font-weight: 700;
+      padding: 12px 20px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+      display: none;
+      z-index: 10000;
+      animation: slideIn 0.3s ease;
+    }
+    @keyframes slideIn { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+  </style>
+</head>
+<body>
+
+  <!-- Authentication Modal -->
+  <div id="authOverlay">
+    <div class="auth-card">
+      <div class="auth-icon">🛡️</div>
+      <h2 class="auth-title">Admin Access</h2>
+      <p class="auth-sub">Enter your 4-digit PIN to access event attendees & RSVP registrations.</p>
+      <input type="password" id="pinInput" class="auth-input" maxlength="4" placeholder="••••" autofocus>
+      <button id="authBtn" class="auth-btn">Unlock Dashboard ➔</button>
+      <div id="authErr" class="auth-err">Incorrect PIN. Please try again.</div>
+    </div>
+  </div>
+
+  <!-- Navbar -->
+  <header class="nav">
+    <a href="/" class="nav-brand">
+      <img src="/assets/logo-storyteller.png" alt="Logo" class="nav-logo">
+      <span class="nav-title">The Storyteller</span>
+      <span class="nav-tag">RSVP Admin</span>
+    </a>
+    <div class="nav-actions">
+      <a href="/register" target="_blank" class="nav-btn">🔗 Open RSVP Form</a>
+      <a href="/host" target="_blank" class="nav-btn">🏁 Host Game</a>
+      <button id="lockBtn" class="nav-btn">🔒 Lock</button>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="container">
+    <div class="header-row">
+      <div>
+        <h1 class="page-title">Event Registrations</h1>
+        <p class="page-sub">The Great Deluge: Prophet Nuh & The Miraculous Ark — Saturday, Nov 28 @ 6:00 PM</p>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon gold">👨‍👩‍👧‍👦</div>
+        <div>
+          <div class="stat-num" id="statFamilies">0</div>
+          <div class="stat-label">Registered Families</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon green">🧒</div>
+        <div>
+          <div class="stat-num" id="statKids">0</div>
+          <div class="stat-label">Children Attending</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon blue">🎟️</div>
+        <div>
+          <div class="stat-num" id="statTotalSeats">0</div>
+          <div class="stat-label">Estimated Total Seats</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Action Bar -->
+    <div class="action-bar">
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" class="search-input" placeholder="Search by name, phone, or email...">
+      </div>
+      <div style="display: flex; gap: 10px;">
+        <button id="refreshBtn" class="btn-refresh">🔄 Refresh</button>
+        <button id="exportBtn" class="btn-export">📥 Export to Excel / CSV</button>
+      </div>
+    </div>
+
+    <!-- Table -->
+    <div class="table-card">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 40px;">#</th>
+              <th>Date & Time</th>
+              <th>Parent / Guardian</th>
+              <th>Contact Info</th>
+              <th>Children</th>
+              <th>Notes</th>
+              <th style="width: 60px;">Action</th>
+            </tr>
+          </thead>
+          <tbody id="registrationsBody">
+            <!-- Dynamically populated -->
+          </tbody>
+        </table>
+      </div>
+      <div id="emptyState" class="empty-state" style="display: none;">
+        <div class="empty-icon">📭</div>
+        <h3>No registrations found</h3>
+        <p>Registrations submitted through the website will appear here in real time.</p>
+      </div>
+    </div>
+  </main>
+
+  <div id="toast"></div>
+
+  <script>
+    const ADMIN_PIN = "7788"; // Easy default PIN for Ahmad
+    let allRegistrations = [];
+
+    // Auth Check
+    const authOverlay = document.getElementById('authOverlay');
+    const pinInput = document.getElementById('pinInput');
+    const authBtn = document.getElementById('authBtn');
+    const authErr = document.getElementById('authErr');
+    const lockBtn = document.getElementById('lockBtn');
+
+    function checkAuth() {
+      if (sessionStorage.getItem('storyteller_admin_auth') === 'true') {
+        authOverlay.style.display = 'none';
+        loadRegistrations();
+      } else {
+        authOverlay.style.display = 'flex';
+        pinInput.focus();
+      }
+    }
+
+    function tryUnlock() {
+      if (pinInput.value.trim() === ADMIN_PIN) {
+        sessionStorage.setItem('storyteller_admin_auth', 'true');
+        authOverlay.style.display = 'none';
+        authErr.style.display = 'none';
+        loadRegistrations();
+      } else {
+        authErr.style.display = 'block';
+        pinInput.value = '';
+        pinInput.focus();
+      }
+    }
+
+    authBtn.addEventListener('click', tryUnlock);
+    pinInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') tryUnlock(); });
+    lockBtn.addEventListener('click', () => {
+      sessionStorage.removeItem('storyteller_admin_auth');
+      checkAuth();
+    });
+
+    // Fetch Registrations
+    async function loadRegistrations() {
+      try {
+        const res = await fetch('/api/registrations');
+        allRegistrations = await res.json();
+        renderRegistrations(allRegistrations);
+        updateStats(allRegistrations);
+      } catch (err) {
+        console.error('Error loading:', err);
+      }
+    }
+
+    function updateStats(list) {
+      const families = list.length;
+      const kids = list.reduce((sum, r) => sum + (parseInt(r.kidsCount, 10) || 1), 0);
+      const estimatedTotal = families * 1.5 + kids; // approx 1-2 parents per family
+
+      document.getElementById('statFamilies').textContent = families;
+      document.getElementById('statKids').textContent = kids;
+      document.getElementById('statTotalSeats').textContent = Math.round(estimatedTotal);
+    }
+
+    function renderRegistrations(list) {
+      const tbody = document.getElementById('registrationsBody');
+      const emptyState = document.getElementById('emptyState');
+      tbody.innerHTML = '';
+
+      if (!list || list.length === 0) {
+        emptyState.style.display = 'block';
+        return;
+      }
+      emptyState.style.display = 'none';
+
+      list.forEach((reg, idx) => {
+        const tr = document.createElement('tr');
+        
+        const dateStr = reg.registeredAt 
+          ? new Date(reg.registeredAt).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })
+          : '-';
+
+        const phoneClean = (reg.phone || '').replace(/[^0-9]/g, '');
+        const waLink = phoneClean.length >= 10 
+          ? `<a href="https://wa.me/${phoneClean.length === 10 ? '1' + phoneClean : phoneClean}" target="_blank" class="wa-link" title="Open WhatsApp">💬 WhatsApp</a>`
+          : '';
+
+        tr.innerHTML = `
+          <td style="color: var(--text-muted); font-weight: 700;">${idx + 1}</td>
+          <td style="white-space: nowrap; color: var(--text-muted); font-size: 13px;">${dateStr}</td>
+          <td><strong>${escapeHtml(reg.parentName || '-')}</strong></td>
+          <td>
+            <div><a href="mailto:${encodeURIComponent(reg.email || '')}" class="contact-link">✉️ ${escapeHtml(reg.email || '-')}</a></div>
+            ${reg.phone ? `<div style="margin-top: 4px;"><a href="tel:${encodeURIComponent(reg.phone)}" class="contact-link">📞 ${escapeHtml(reg.phone)}</a>${waLink}</div>` : ''}
+          </td>
+          <td>
+            <span class="badge-count">${reg.kidsCount || 1} Kids</span>
+            ${reg.kidsNames ? `<div style="font-size: 13px; color: var(--text-muted); margin-top: 4px;">${escapeHtml(reg.kidsNames)}</div>` : ''}
+          </td>
+          <td style="color: var(--text-muted); font-size: 13px; max-width: 200px;">${escapeHtml(reg.notes || '-')}</td>
+          <td>
+            <button class="btn-del" onclick="deleteReg('${reg.id}')" title="Delete RSVP">🗑️</button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    // Delete Registration
+    async function deleteReg(id) {
+      if (!confirm('Are you sure you want to delete this registration?')) return;
+      try {
+        const res = await fetch(`/api/registrations/${id}`, { method: 'DELETE' });
+        const result = await res.json();
+        if (result.success) {
+          showToast('Registration deleted.');
+          loadRegistrations();
+        }
+      } catch (e) {
+        alert('Failed to delete.');
+      }
+    }
+
+    // Search filter
+    document.getElementById('searchInput').addEventListener('input', (e) => {
+      const q = e.target.value.toLowerCase().trim();
+      const filtered = allRegistrations.filter(r => 
+        (r.parentName || '').toLowerCase().includes(q) ||
+        (r.email || '').toLowerCase().includes(q) ||
+        (r.phone || '').toLowerCase().includes(q) ||
+        (r.kidsNames || '').toLowerCase().includes(q)
+      );
+      renderRegistrations(filtered);
+    });
+
+    // Refresh button
+    document.getElementById('refreshBtn').addEventListener('click', () => {
+      loadRegistrations();
+      showToast('Data refreshed.');
+    });
+
+    // CSV Export
+    document.getElementById('exportBtn').addEventListener('click', () => {
+      if (allRegistrations.length === 0) {
+        return alert('No registrations to export.');
+      }
+
+      // UTF-8 BOM for clean Arabic and special character rendering in Excel
+      let csv = '\uFEFF';
+      csv += 'ID,Date Registered,Parent Name,Email,Phone,Kids Count,Kids Names,Notes,Event\n';
+
+      allRegistrations.forEach(r => {
+        const row = [
+          `"${r.id || ''}"`,
+          `"${r.registeredAt ? new Date(r.registeredAt).toLocaleString() : ''}"`,
+          `"${(r.parentName || '').replace(/"/g, '""')}"`,
+          `"${(r.email || '').replace(/"/g, '""')}"`,
+          `"${(r.phone || '').replace(/"/g, '""')}"`,
+          `"${r.kidsCount || 1}"`,
+          `"${(r.kidsNames || '').replace(/"/g, '""')}"`,
+          `"${(r.notes || '').replace(/"/g, '""')}"`,
+          `"${(r.eventTitle || '').replace(/"/g, '""')}"`
+        ];
+        csv += row.join(',') + '\n';
+      });
+
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `Storyteller_Registrations_${new Date().toISOString().split('T')[0]}.csv`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      showToast('📥 CSV exported successfully!');
+    });
+
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.style.display = 'block';
+      setTimeout(() => { t.style.display = 'none'; }, 2500);
+    }
+
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    // Init
+    checkAuth();
+  </script>
+</body>
+</html>
